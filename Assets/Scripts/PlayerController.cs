@@ -3,11 +3,30 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	public float speed = 10.0f;
-	public float tilt=1.1f;
-				
+	public float tilt=3.2f;
+			
+
+
+
+	
+
 	void FixedUpdate ()
 	{
-		float moveHorizontal = Input.GetAxis ("Horizontal");
+		float moveHorizontal;
+#if UNITY_WP8
+		 moveHorizontal = Input.acceleration.x;
+#endif
+
+		#if UNITY_WP8_API
+		 moveHorizontal = Input.acceleration.x;
+		#endif
+
+
+
+#if UNITY_EDITOR
+		 moveHorizontal = Input.GetAxis ("Horizontal");
+#endif
+
 		
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, 0.0f);
 		GetComponent<Rigidbody>().velocity = movement * speed;
