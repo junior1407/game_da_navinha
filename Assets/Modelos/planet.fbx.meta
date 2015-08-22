@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f34e4973133f4c344898b797532c0b1f
-timeCreated: 1440194728
+guid: f3dc15bf0ae79ad488d3fde6fa942d12
+timeCreated: 1440260063
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cube
+    4300000: Sphere.001
   materials:
     importMaterials: 1
     materialName: 0
@@ -36,11 +36,11 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importBlendShapes: 0
+    importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 0
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
