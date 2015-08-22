@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class move : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 	public float speed = 10.0f;
 	public float tilt=1.1f;
 				
