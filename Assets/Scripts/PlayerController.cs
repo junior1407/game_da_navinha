@@ -2,17 +2,33 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
+
+
+
+	BoxCollider colisor;
+	public static int vida;
 	public float speed = 10.0f;
 	public float tilt=3.2f;
 	public Transform spawnTiro;
 	public float fireRate;
 	public float nextFire;
 			
+	void Awake(){
+		colisor = GetComponent<BoxCollider> ();
+	}
 	void Start(){
-		fireRate = 1.5f;
+		vida = 3;
 		nextFire = 0.0f;
 
 	}
+
+
+	void OnTriggerEnter(Collider target){
+		TomarDano ();
+		Debug.Log ("dano");
+
+	}
+
 	void Update(){
 		//Debug.Log (1 / Time.deltaTime);
 	//	Debug.Log (Time.time);
@@ -54,5 +70,22 @@ public class PlayerController : MonoBehaviour {
 		
 		GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
 	}
+
+	public void TomarDano(){
+		vida--;
+		if (vida == 0) {
+			Destroy (gameObject);
+		}
+
+	}
+
+	IEnumerator ficarInvencivel(){
+		yield return 0;
+	
+	}
+
+
+
+
 		}
 	

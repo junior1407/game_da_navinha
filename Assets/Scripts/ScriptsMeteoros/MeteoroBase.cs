@@ -14,6 +14,14 @@ public class MeteoroBase : MonoBehaviour {
 	
 	// Update is called once per frame
 
+	void OnTriggerEnter(Collider target){
+		if (target.tag == "tiro") {
+			Destroy(target.gameObject);
+			Destroy(gameObject);
+		}
+
+
+	}
 
 	void Mover(){
 		transform.Translate (new Vector3 (0, 0, -1) * (velocidade_base + velocidade_jogo) * Time.deltaTime);
