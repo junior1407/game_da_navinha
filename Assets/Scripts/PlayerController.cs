@@ -4,9 +4,16 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 	public float speed = 10.0f;
 	public float tilt=3.2f;
+	public Transform spawnTiro;
 			
 
+	void Update(){
+		Debug.Log (1 / Time.deltaTime);
 
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			Instantiate ((Resources.Load("TiroKawaii")),new Vector3(spawnTiro.position.x,0.0f), spawnTiro.rotation);
+		}
+	}
 
 	
 
