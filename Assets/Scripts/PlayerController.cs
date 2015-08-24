@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 
 	BoxCollider colisor;
-	public static int vida;
+	public  int vida;
 	public float speed = 10.0f;
 	public float tilt=3.2f;
 	public Transform spawnTiro;
@@ -25,15 +25,27 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider target){
 		if (target.tag == "inimigo") {
-		TomarDano ();
+			TomarDano ();Debug.Log ("dano");
 		}
-		Debug.Log ("dano");
 
+
+
+
+	}
+
+	public void Atirar(){
+	    if (Time.time > nextFire) {
+			nextFire=Time.time+fireRate;
+			Instantiate ((Resources.Load("TiroKawaii")),new Vector3(spawnTiro.position.x,0.0f), spawnTiro.rotation);
+		}
+	
 	}
 
 	void Update(){
 		//Debug.Log (1 / Time.deltaTime);
 	//	Debug.Log (Time.time);
+
+
 		if ((Input.GetKeyDown (KeyCode.Space))&&(Time.time>nextFire)) {
 			nextFire=Time.time+fireRate;
 			Instantiate ((Resources.Load("TiroKawaii")),new Vector3(spawnTiro.position.x,0.0f), spawnTiro.rotation);
@@ -75,7 +87,7 @@ public class PlayerController : MonoBehaviour {
 
 	public void TomarDano(){
 		vida--;
-		if (vida == 0) {
+		if (vida == 0) {	
 			Destroy (gameObject);
 		}
 
