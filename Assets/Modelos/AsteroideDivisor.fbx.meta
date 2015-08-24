@@ -1,25 +1,25 @@
 fileFormatVersion: 2
 guid: c9ccf373352670147b528d1cb305e33c
-timeCreated: 1440194204
+timeCreated: 1440437719
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cube.001
-    100004: Icosphere.010
+    100002: AsteroideDivisor
+    100004: bolasAsteroideDivisor
     400000: //RootNode
-    400002: Cube.001
-    400004: Icosphere.010
-    2300000: Cube.001
-    2300002: Icosphere.010
-    3300000: Cube.001
-    3300002: Icosphere.010
-    4300000: Cube.001
-    4300002: Icosphere.010
+    400002: AsteroideDivisor
+    400004: bolasAsteroideDivisor
+    2300000: AsteroideDivisor
+    2300002: bolasAsteroideDivisor
+    3300000: AsteroideDivisor
+    3300002: bolasAsteroideDivisor
+    4300000: AsteroideDivisor
+    4300002: bolasAsteroideDivisor
   materials:
     importMaterials: 1
-    materialName: 0
+    materialName: 1
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
@@ -44,7 +44,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
-    swapUVChannels: 0
+    swapUVChannels: 1
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
