@@ -24,7 +24,9 @@ public class PlayerController : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider target){
+		if (target.tag == "inimigo") {
 		TomarDano ();
+		}
 		Debug.Log ("dano");
 
 	}
