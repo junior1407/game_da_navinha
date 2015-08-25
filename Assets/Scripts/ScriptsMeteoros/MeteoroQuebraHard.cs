@@ -4,6 +4,5 @@ using System.Collections;
 public class MeteoroQuebraHard : MeteoroBase
 {
 
-
 }
 
