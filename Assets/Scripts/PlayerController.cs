@@ -4,9 +4,9 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 
-
+	public UnityEngine.UI.Text mostrador;
 	BoxCollider colisor;
-	public  int vida;
+	public static  int vida;
 	public float speed = 10.0f;
 	public float tilt=3.2f;
 	public Transform spawnTiro;
@@ -19,13 +19,18 @@ public class PlayerController : MonoBehaviour {
 	void Start(){
 		vida = 3;
 		nextFire = 0.0f;
+		AttMostradorDeVida ();
 
 	}
 
+	void AttMostradorDeVida(){
+		mostrador.text = "Vida: " + vida;
+	}
 
 	void OnTriggerEnter(Collider target){
 		if (target.tag == "inimigo") {
-			TomarDano ();Debug.Log ("dano");
+			TomarDano ();
+			AttMostradorDeVida();
 		}
 
 
