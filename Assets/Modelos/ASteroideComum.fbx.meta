@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f34e4973133f4c344898b797532c0b1f
-timeCreated: 1440437645
+timeCreated: 1440603526
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -12,7 +12,7 @@ ModelImporter:
     4300000: AsteroideComum
   materials:
     importMaterials: 1
-    materialName: 1
+    materialName: 0
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
