@@ -2,15 +2,27 @@
 using System.Collections;
 
 public class MeteoroBase : MonoBehaviour {
+	
+
 
 	public float velocidade_base;
 	public float velocidade_jogo;
-	public int vida;
-	void Start(){
+	public int vida_atual;
+	public int vida_max;
+	 void Awake(){
+		vida_max = 1;
+	}
+	public void atualizar_velocidadejogo(){
 		velocidade_jogo = GameController.velocidade_jogo;
+	}
+
+	void Start(){
+		atualizar_velocidadejogo ();
 		Debug.Log ("oi");
+		vida_atual = vida_max;
 
 	}
+
 
 
 
@@ -18,13 +30,16 @@ public class MeteoroBase : MonoBehaviour {
 	// Update is called once per frame
 
 	public void DestruirItSelf(){
-		Destroy (gameObject);
+		vida_atual = vida_max;
+		atualizar_velocidadejogo ();
+		GameController.pollMeteoros_comuns.reutilizar (gameObject);
+
 
 	}
 
 	public void TomarDano(){
-		vida--;
-		if (vida == 0) {
+		vida_atual--;
+		if (vida_atual == 0) {
 			DestruirItSelf ();
 		}	
 	}
@@ -44,7 +59,7 @@ public class MeteoroBase : MonoBehaviour {
 	}
 	void EDestruido(){
 		if (transform.position.z < -1) {
-			Destroy (gameObject);
+			DestruirItSelf();
 		}
 	}
 	void Update () {

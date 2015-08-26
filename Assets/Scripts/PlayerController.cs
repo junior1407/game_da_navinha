@@ -3,9 +3,9 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+	
 
-	public UnityEngine.UI.Text mostrador;
-	BoxCollider colisor;
+	Gerenciador_UI gerente;
 	public static  int vida;
 	public float speed = 10.0f;
 	public float tilt=3.2f;
@@ -14,17 +14,22 @@ public class PlayerController : MonoBehaviour {
 	public float nextFire;
 			
 	void Awake(){
-		colisor = GetComponent<BoxCollider> ();
+		GameObject vida3=GameObject.Find ("heart_3");
+		GameObject vida2=GameObject.Find ("heart_2");
+		GameObject vida1=GameObject.Find ("heart_1");
+		gerente = new Gerenciador_UI (vida3, vida2, vida1);
+
+
 	}
 	void Start(){
 		vida = 3;
 		nextFire = 0.0f;
-		AttMostradorDeVida ();
+
 
 	}
 
 	void AttMostradorDeVida(){
-		mostrador.text = "Vida: " + vida;
+		gerente.att (vida);
 	}
 
 	void OnTriggerEnter(Collider target){
@@ -94,6 +99,7 @@ public class PlayerController : MonoBehaviour {
 		vida--;
 		if (vida == 0) {	
 			Destroy (gameObject);
+			Application.LoadLevel(Application.loadedLevel);
 		}
 
 	}
