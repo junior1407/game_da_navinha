@@ -22,11 +22,12 @@ public class GameController : MonoBehaviour {
 
 
 	IEnumerator SpawnWaves(){
+		Vector3 posicaospawn;
 		float tempo_passado = 0.0f;
 		while (tempo_passado< 100000.0f) {
 			tempo_passado+=Time.deltaTime;
-			Debug.Log (tempo_passado);
-			Vector3 posicaospawn = new Vector3 (Random.Range (-1.5f, 1.5f), 0, 12);
+			//Debug.Log (tempo_passado);
+			posicaospawn = new Vector3 (Random.Range (-1.5f, 1.5f), 0, 12);
 			//Instantiate (meteoroComum, posicaospawn, Quaternion.identity);
 			pollMeteoros_comuns.AtivarGameObject(posicaospawn);
 			yield return new WaitForSeconds(1);tempo_passado+=1;
@@ -52,7 +53,7 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (velocidade_jogo);
+
 		velocidade_jogo = velocidade_jogo + (Time.deltaTime/90);
 
 

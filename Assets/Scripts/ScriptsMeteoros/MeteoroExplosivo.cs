@@ -9,7 +9,7 @@ public class MeteoroExplosivo : MeteoroBase
 		Collider[] hitados = Physics.OverlapSphere (pos_atual, 2);
 		int i = 0;
 		while (i<hitados.Length) {
-			Debug.Log (hitados[i].gameObject.name);
+			//Debug.Log (hitados[i].gameObject.name);
 		}
 
 	}

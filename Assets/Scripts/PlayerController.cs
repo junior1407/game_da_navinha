@@ -3,8 +3,6 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	
-
 	Gerenciador_UI gerente;
 	public static  int vida;
 	public float speed = 10.0f;
@@ -12,20 +10,18 @@ public class PlayerController : MonoBehaviour {
 	public Transform spawnTiro;
 	public float fireRate;
 	public float nextFire;
+	public static GerenciadorPool pollTiros;
 			
 	void Awake(){
 		GameObject vida3=GameObject.Find ("heart_3");
 		GameObject vida2=GameObject.Find ("heart_2");
 		GameObject vida1=GameObject.Find ("heart_1");
 		gerente = new Gerenciador_UI (vida3, vida2, vida1);
-
-
+		pollTiros = new GerenciadorPool ((GameObject) Resources.Load ("TiroKawaii"), 1);
 	}
 	void Start(){
-		vida = 3;
+		vida = 500;
 		nextFire = 0.0f;
-
-
 	}
 
 	void AttMostradorDeVida(){
@@ -37,16 +33,12 @@ public class PlayerController : MonoBehaviour {
 			TomarDano ();
 			AttMostradorDeVida();
 		}
-
-
-
-
 	}
 
 	public void Atirar(){
 	    if (Time.time > nextFire) {
 			nextFire=Time.time+fireRate;
-			Instantiate ((Resources.Load("TiroKawaii")),new Vector3(spawnTiro.position.x,0.0f), spawnTiro.rotation);
+			pollTiros.AtivarGameObject(new Vector3(spawnTiro.position.x,0.0f));
 		}
 	
 	}
@@ -58,7 +50,9 @@ public class PlayerController : MonoBehaviour {
 
 		if ((Input.GetKeyDown (KeyCode.Space))&&(Time.time>nextFire)) {
 			nextFire=Time.time+fireRate;
-			Instantiate ((Resources.Load("TiroKawaii")),new Vector3(spawnTiro.position.x,0.0f), spawnTiro.rotation);
+			//Instantiate ((Resources.Load("TiroKawaii")),new Vector3(spawnTiro.position.x,0.0f), spawnTiro.rotation);
+			pollTiros.AtivarGameObject(new Vector3(spawnTiro.position.x,0.0f));
+		//	pollTiros.StringsOP();
 		}
 	}
 

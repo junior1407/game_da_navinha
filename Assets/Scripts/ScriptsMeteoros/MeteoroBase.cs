@@ -18,7 +18,7 @@ public class MeteoroBase : MonoBehaviour {
 
 	void Start(){
 		atualizar_velocidadejogo ();
-		Debug.Log ("oi");
+	
 		vida_atual = vida_max;
 
 	}
@@ -45,12 +45,15 @@ public class MeteoroBase : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider target){
 		if (target.tag == "tiro") {
-			Destroy(target.gameObject);
+			PlayerController.pollTiros.reutilizar(target.gameObject);
+
 			TomarDano();
 		}
 
 
+
 	}
+
 
 
 
