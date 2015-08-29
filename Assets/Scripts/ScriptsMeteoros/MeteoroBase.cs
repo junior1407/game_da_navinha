@@ -29,7 +29,8 @@ public class MeteoroBase : MonoBehaviour {
 	
 	// Update is called once per frame
 
-	public void DestruirItSelf(){
+	public virtual void DestruirItSelf(){
+
 		vida_atual = vida_max;
 		atualizar_velocidadejogo ();
 		GameController.pollMeteoros_comuns.reutilizar (gameObject);
@@ -45,6 +46,7 @@ public class MeteoroBase : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider target){
 		if (target.tag == "tiro") {
+			target.GetComponent<Tiro>().resetar();	
 			PlayerController.pollTiros.reutilizar(target.gameObject);
 
 			TomarDano();
