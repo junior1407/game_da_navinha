@@ -33,9 +33,14 @@ public class GameController : MonoBehaviour {
 			setWave(wave);
 		   switch(wave){
 
-			//case 1: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,1,wave));
-			//	break;}
-			default : Debug.Log ("wut");yield return StartCoroutine(WaveGenerator(Random.Range(15.0f, 20.0f),1.0f,4)); break;
+			case 1: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,1));
+				break;}
+			case 2: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,2));
+				break;}
+			case 3: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,3));
+				break;}
+
+			default : Debug.Log ("wut");yield return StartCoroutine(WaveGenerator(Random.Range(15.0f, 20.0f),1.0f,3)); break;
 
 			}
 				
@@ -83,18 +88,18 @@ public class GameController : MonoBehaviour {
 		while (tempo_passado< duracao) {
 			tempo_passado+=Time.deltaTime;
 			posicaospawn = new Vector3 (Random.Range (-1.5f, 1.5f), 0, 12);
-			int atual = Random.Range(1,TiposMeteoro);
+			int atual = Random.Range(1,TiposMeteoro+1);
 			//Debug.Log("atual e "+atual);
-			if (atual==5){
+			if (atual==1){
 				pollMeteoros_comuns.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo);tempo_passado+=intervalo;
 			}
-			if (atual==5){
+			if (atual==3){
 				pollMeteoros_hard.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
 
 			}
-			if (atual==3){
+			if (atual==2){
 				pollMeteoros_explosivo.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
 				

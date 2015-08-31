@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 		pollTiros = new GerenciadorPool ((GameObject) Resources.Load ("TiroKawaii"), 1);
 	}
 	void Start(){
-		vida = 500;
+		vida = 3;
 		nextFire = 0.0f;
 	}
 
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter(Collider target){
 		if (target.tag == "inimigo") {
 			TomarDano ();
-			AttMostradorDeVida();
+
 		}
 	}
 
@@ -95,9 +95,11 @@ public class PlayerController : MonoBehaviour {
 		yield return 0;
 	}
 
+
+
 	public void TomarDano(){
-		Debug.Log ("DOR");
-		vida--;
+	
+		vida--;AttMostradorDeVida();
 		StartCoroutine (animacaoDano ());
 		if (vida == 0) {	
 			Destroy (gameObject);

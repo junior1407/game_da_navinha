@@ -39,9 +39,11 @@ public class MeteoroBase : MonoBehaviour {
 	}
 
 	public void TomarDano(){
+		Debug.Log ("gg");
 		vida_atual--;
 		if (vida_atual == 0) {
 			DestruirItSelf ();
+
 		}	
 	}
 	void OnTriggerEnter(Collider target){
@@ -71,11 +73,12 @@ public class MeteoroBase : MonoBehaviour {
 
 		Mover ();
 		EDestruido ();
-		qualquer ();
+
 	}
 
-	public virtual void qualquer(){}
 
+
+	public virtual  void DestruirEfeitos(){}
 
 
 }
