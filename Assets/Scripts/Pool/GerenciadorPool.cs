@@ -24,7 +24,7 @@ public class GerenciadorPool{
 
 
 	public void AtivarGameObject(Vector3 posicao){
-
+	
 
 		if (stackLivres.Count == 0) {
 			stackLivres.Push(GameObject.Instantiate(prefab));
@@ -38,7 +38,7 @@ public class GerenciadorPool{
 		stackBusy.Push (atual);
 		if (prefab.tag != "tiro") {
 
-			Debug.Log ("Busy: " + stackBusy.Count + " Livre:" + stackLivres.Count); 
+Debug.Log ("Busy: " + stackBusy.Count + " Livre:" + stackLivres.Count); 
 		}
 	}
 

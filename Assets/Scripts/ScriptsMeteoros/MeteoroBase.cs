@@ -71,5 +71,11 @@ public class MeteoroBase : MonoBehaviour {
 
 		Mover ();
 		EDestruido ();
+		qualquer ();
 	}
+
+	public virtual void qualquer(){}
+
+
+
 }

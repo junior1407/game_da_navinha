@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerController : MonoBehaviour {
 
@@ -89,8 +90,15 @@ public class PlayerController : MonoBehaviour {
 		GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
 	}
 
+	IEnumerator animacaoDano(){
+
+		yield return 0;
+	}
+
 	public void TomarDano(){
+		Debug.Log ("DOR");
 		vida--;
+		StartCoroutine (animacaoDano ());
 		if (vida == 0) {	
 			Destroy (gameObject);
 			Application.LoadLevel(Application.loadedLevel);
