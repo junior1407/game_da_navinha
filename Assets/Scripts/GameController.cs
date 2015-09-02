@@ -7,7 +7,8 @@ public class GameController : MonoBehaviour {
 
 	public static float velocidade_jogo;
 	static Text wave;
-	Text level;
+
+	public GameObject partMeteoroComum;
 	public GameObject meteoroComum;	
 	public GameObject meteoroHard;
 	public GameObject meteoroExplosivo;
@@ -15,11 +16,12 @@ public class GameController : MonoBehaviour {
 	public static GerenciadorPool pollMeteoros_comuns;
 	public static GerenciadorPool pollMeteoros_hard;
 	public static GerenciadorPool pollMeteoros_explosivo;
+	public static GerenciadorParticula pollPartMeteoroC;
 
 	void Awake(){
 		velocidade_jogo = 1.0f;
 		wave=GameObject.Find ("wave").GetComponent<Text> ();
-		level=GameObject.Find ("level").GetComponent<Text> ();
+
 	}
 
 	public static void setWave(int n){
@@ -122,6 +124,7 @@ public class GameController : MonoBehaviour {
 		 pollMeteoros_comuns = new GerenciadorPool (meteoroComum, 4);
 		pollMeteoros_hard = new GerenciadorPool (meteoroHard, 4);
 		pollMeteoros_explosivo = new GerenciadorPool (meteoroExplosivo, 4);
+		pollPartMeteoroC = new GerenciadorParticula (partMeteoroComum, 2);
 		StartCoroutine (StartJogo ());
 		//pollMeteoros_comuns.FirstRunSpawn ();
 

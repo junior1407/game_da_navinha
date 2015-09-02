@@ -30,4 +30,4 @@ public class Tiro : MonoBehaviour {
 			PlayerController.pollTiros.reutilizar(gameObject);
 		}
 	}
-}
+	}

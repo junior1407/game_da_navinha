@@ -5,12 +5,17 @@ public class MeteoroBase : MonoBehaviour {
 	
 
 
+
+
 	public float velocidade_base;
 	public float velocidade_jogo;
 	public int vida_atual;
 	public int vida_max;
 	 void Awake(){
 		vida_max = 1;
+
+
+
 	}
 	public void atualizar_velocidadejogo(){
 		velocidade_jogo = GameController.velocidade_jogo;
@@ -30,7 +35,7 @@ public class MeteoroBase : MonoBehaviour {
 	// Update is called once per frame
 
 	public virtual void DestruirItSelf(){
-
+	
 		vida_atual = vida_max;
 		atualizar_velocidadejogo ();
 		GameController.pollMeteoros_comuns.reutilizar (gameObject);
@@ -50,8 +55,11 @@ public class MeteoroBase : MonoBehaviour {
 		if (target.tag == "tiro") {
 			target.GetComponent<Tiro>().resetar();	
 			PlayerController.pollTiros.reutilizar(target.gameObject);
-
+			if (vida_atual==1){
+				GameController.pollPartMeteoroC.AtivarGameObject(transform.position);
+			}
 			TomarDano();
+
 		}
 
 
@@ -70,7 +78,7 @@ public class MeteoroBase : MonoBehaviour {
 		}
 	}
 	void Update () {
-
+		//particulasystem.play ();
 		Mover ();
 		EDestruido ();
 
