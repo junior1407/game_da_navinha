@@ -7,16 +7,21 @@ public class GameController : MonoBehaviour {
 
 	public static float velocidade_jogo;
 	static Text wave;
-
+	public GameObject partExplosao;
 	public GameObject partMeteoroComum;
 	public GameObject meteoroComum;	
 	public GameObject meteoroHard;
 	public GameObject meteoroExplosivo;
+	public GameObject meteoroIndestruct;
 	public int numero_de_inimigos;
 	public static GerenciadorPool pollMeteoros_comuns;
 	public static GerenciadorPool pollMeteoros_hard;
 	public static GerenciadorPool pollMeteoros_explosivo;
+	public static GerenciadorPool pollMeteoros_indestruct;
 	public static GerenciadorParticula pollPartMeteoroC;
+	public static GerenciadorParticula pollPartMeteoroE;
+
+
 
 	void Awake(){
 		velocidade_jogo = 1.0f;
@@ -35,9 +40,9 @@ public class GameController : MonoBehaviour {
 			setWave(wave);
 		   switch(wave){
 
-			case 1: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,1));
+			case 2: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,1));
 				break;}
-			case 2: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,2));
+			case 1: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,2));
 				break;}
 			case 3: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,3));
 				break;}
@@ -91,12 +96,12 @@ public class GameController : MonoBehaviour {
 			tempo_passado+=Time.deltaTime;
 			posicaospawn = new Vector3 (Random.Range (-1.5f, 1.5f), 0, 12);
 			int atual = Random.Range(1,TiposMeteoro+1);
-			//Debug.Log("atual e "+atual);
+
 			if (atual==1){
 				pollMeteoros_comuns.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo);tempo_passado+=intervalo;
 			}
-			if (atual==3){
+			if (atual==5){
 				pollMeteoros_hard.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
 
@@ -105,6 +110,11 @@ public class GameController : MonoBehaviour {
 				pollMeteoros_explosivo.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
 				
+			}
+			if (atual==1){
+				pollMeteoros_indestruct.AtivarGameObject(posicaospawn);
+				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
+
 			}
 
 			
@@ -124,7 +134,9 @@ public class GameController : MonoBehaviour {
 		 pollMeteoros_comuns = new GerenciadorPool (meteoroComum, 4);
 		pollMeteoros_hard = new GerenciadorPool (meteoroHard, 4);
 		pollMeteoros_explosivo = new GerenciadorPool (meteoroExplosivo, 4);
+		pollMeteoros_indestruct = new GerenciadorPool (meteoroIndestruct, 4);
 		pollPartMeteoroC = new GerenciadorParticula (partMeteoroComum, 2);
+		pollPartMeteoroE = new GerenciadorParticula (partExplosao, 2);
 		StartCoroutine (StartJogo ());
 		//pollMeteoros_comuns.FirstRunSpawn ();
 

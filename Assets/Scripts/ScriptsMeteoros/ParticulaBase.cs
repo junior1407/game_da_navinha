@@ -5,6 +5,7 @@ public class ParticulaBase : MonoBehaviour
 {
 
 	public float tempovivo;
+	public float duracao;
 
 	void Awake(){
 		tempovivo = 0.0f;
@@ -14,7 +15,7 @@ public class ParticulaBase : MonoBehaviour
 	void Update ()
 	{
 		tempovivo += Time.deltaTime;
-	if (tempovivo > 3.0f) {
+	if (tempovivo > duracao) {
 			tempovivo=0.0f;
 			GameController.pollPartMeteoroC.reutilizar(gameObject);
 		}

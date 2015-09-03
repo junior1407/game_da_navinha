@@ -41,8 +41,10 @@ public class MeteoroExplosivo : MeteoroBase
 
 
 	public void Explodir(){
+	
 
 		Vector3 pos_atual = transform.position;
+		//GameController.pollPartMeteoroE.AtivarGameObject (pos_atual);
 		Collider[] hitados = Physics.OverlapSphere (pos_atual, 5);
 		Debug.Log ("foram : "+ hitados.Length);
 		foreach (Collider hitado in hitados) {
@@ -53,14 +55,12 @@ public class MeteoroExplosivo : MeteoroBase
 			}
 
 			if (hitado.tag=="inimigo"){
-				try{
+
 				if (hitado.name.Contains("comum")){
 
 					hitado.GetComponent<MeteoroBase>().TomarDano();
-					}}
-				catch(InvalidOperationException e){
-					Debug.Log (e.Message);
-					          }
+					}
+
 				if (hitado.name.Contains("explosivo")){
 					hitado.GetComponent<MeteoroExplosivo>().TomarDano();
 				}
