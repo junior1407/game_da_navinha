@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		float moveHorizontal;
+		moveHorizontal = Input.GetAxis ("Horizontal");
 #if UNITY_WP8
 		 moveHorizontal = Input.acceleration.x;
 #endif

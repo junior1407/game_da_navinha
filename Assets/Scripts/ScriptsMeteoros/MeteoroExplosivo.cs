@@ -44,8 +44,8 @@ public class MeteoroExplosivo : MeteoroBase
 	
 
 		Vector3 pos_atual = transform.position;
-		//GameController.pollPartMeteoroE.AtivarGameObject (pos_atual);
-		Collider[] hitados = Physics.OverlapSphere (pos_atual, 5);
+		GameController.pollPartMeteoroE.AtivarGameObject (pos_atual);
+		Collider[] hitados = Physics.OverlapSphere (pos_atual, 2);
 		Debug.Log ("foram : "+ hitados.Length);
 		foreach (Collider hitado in hitados) {
 
