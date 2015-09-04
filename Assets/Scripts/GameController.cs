@@ -7,9 +7,9 @@ public class GameController : MonoBehaviour {
 
 	public static float velocidade_jogo;
 	static Text wave;
-
+	public Text textoScore;
 	CaixaWave caixaWave;
-
+    public static float score;
 	public GameObject partExplosao;
 	public GameObject partMeteoroComum;
 	public GameObject meteoroComum;	
@@ -25,6 +25,15 @@ public class GameController : MonoBehaviour {
 	public static GerenciadorParticula pollPartMeteoroE;
 
 
+
+	public static void addPontos(float pontos){
+		score += pontos;	
+
+	}
+
+	public void atualizaPontos(){
+		textoScore.text = "Score: " + (int)score;
+	}
 
 	void Awake(){
 		velocidade_jogo = 1.0f;
@@ -52,7 +61,7 @@ public class GameController : MonoBehaviour {
 				break;}
 			case 6: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,3,0,0));
 				break;}
-			default : Debug.Log ("wut");yield return StartCoroutine(WaveGenerator(Random.Range(15.0f, 20.0f),1.0f,4,0,0)); break;
+			default : yield return StartCoroutine(WaveGenerator(Random.Range(15.0f, 20.0f),1.0f,4,0,0)); break;
 
 			}
 				
@@ -198,9 +207,12 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        score += Time.deltaTime;
+
 
 		velocidade_jogo = velocidade_jogo + (Time.deltaTime/90);
-
+	
+		atualizaPontos ();
 
 
 

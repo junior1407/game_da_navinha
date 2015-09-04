@@ -5,7 +5,7 @@ public class MeteoroBase : MonoBehaviour {
 	
 
 
-
+	public float pontos;
 
 	public float velocidade_base;
 	public float velocidade_jogo;
@@ -48,10 +48,11 @@ public class MeteoroBase : MonoBehaviour {
 	}
 
 	public void TomarDano(){
-		Debug.Log ("gg");
+		//Debug.Log ("gg");
 		vida_atual--;
 		if (vida_atual == 0) {
 			DestruirItSelf ();
+			GameController.addPontos(pontos);
 
 		}	
 	}

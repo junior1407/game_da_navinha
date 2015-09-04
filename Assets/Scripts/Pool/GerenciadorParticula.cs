@@ -42,7 +42,7 @@ public class GerenciadorParticula{
 		stackBusy.Push (atual);
 		if (prefab.tag != "tiro") {
 
-Debug.Log ("Busy: " + stackBusy.Count + " Livre:" + stackLivres.Count); 
+//Debug.Log ("Busy: " + stackBusy.Count + " Livre:" + stackLivres.Count); 
 		}
 	}
 
