@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 		GameObject vida2=GameObject.Find ("heart_2");
 		GameObject vida1=GameObject.Find ("heart_1");
 		gerente = new Gerenciador_UI (vida3, vida2, vida1);
-		pollTiros = new GerenciadorPool ((GameObject) Resources.Load ("TiroKawaii"), 1);
+		pollTiros = new GerenciadorPool ((GameObject) Resources.Load ("TiroKawaii"), 2);
 	}
 	void Start(){
 		vida = 3;

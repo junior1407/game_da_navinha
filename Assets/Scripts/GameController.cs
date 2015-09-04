@@ -7,6 +7,9 @@ public class GameController : MonoBehaviour {
 
 	public static float velocidade_jogo;
 	static Text wave;
+
+	CaixaWave caixaWave;
+
 	public GameObject partExplosao;
 	public GameObject partMeteoroComum;
 	public GameObject meteoroComum;	
@@ -25,19 +28,16 @@ public class GameController : MonoBehaviour {
 
 	void Awake(){
 		velocidade_jogo = 1.0f;
-		wave=GameObject.Find ("wave").GetComponent<Text> ();
-
+		caixaWave = GameObject.FindGameObjectWithTag ("caixa-wave").GetComponent<CaixaWave> ();
+		caixaWave.Startar ();
 	}
-
-	public static void setWave(int n){
-
-		wave.text = ("Wave " + n);
-	}
+	
 
 	IEnumerator StartJogo(){
 		int wave = 1;
 		while (wave<50) {
-			setWave(wave);
+			StartCoroutine(caixaWave.Atualizar(wave));
+		//	StartCoroutine (caixaWave.des());
 		   switch(wave){
 
 			case 1: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,1,0,0));
@@ -183,12 +183,12 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		numero_de_inimigos = 50;
 	
-		 pollMeteoros_comuns = new GerenciadorPool (meteoroComum, 4);
+		 pollMeteoros_comuns = new GerenciadorPool (meteoroComum, 6);
 		pollMeteoros_hard = new GerenciadorPool (meteoroHard, 4);
 		pollMeteoros_explosivo = new GerenciadorPool (meteoroExplosivo, 4);
 		pollMeteoros_indestruct = new GerenciadorPool (meteoroIndestruct, 4);
-		pollPartMeteoroC = new GerenciadorParticula (partMeteoroComum, 2);
-		pollPartMeteoroE = new GerenciadorParticula (partExplosao, 2);
+		pollPartMeteoroC = new GerenciadorParticula (partMeteoroComum, 4);
+		pollPartMeteoroE = new GerenciadorParticula (partExplosao, 3);
 		StartCoroutine (StartJogo ());
 		//pollMeteoros_comuns.FirstRunSpawn ();
 
