@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.IO;
 
 public class GameController : MonoBehaviour {
 
@@ -24,6 +25,26 @@ public class GameController : MonoBehaviour {
 	public static GerenciadorParticula pollPartMeteoroC;
 	public static GerenciadorParticula pollPartMeteoroE;
 
+
+	/*
+	public void salvar(){
+		#if UNITY_WINRT
+
+		byte[] bytes = UnityPluginForWindowsPhone.FileIO.SerializeObject<GameProgress>(this);
+		File.WriteAllBytes(getSaveFile(), bytes);
+		#else
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream fs = File.Create(getSaveFile());
+		bf.Serialize(fs, this);
+		fs.Close();
+		#endif
+	}
+
+
+	public void load(){
+		byte[] bytes = File.ReadAllBytes(saveFile);        
+		GameProgress gp = UnityWindowsPhonePlugin.FileIO.DeserializeObject<GameProgress>(bytes);
+	}	*/
 
 
 	public static void addPontos(float pontos){
