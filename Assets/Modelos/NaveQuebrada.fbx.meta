@@ -1,0 +1,121 @@
+fileFormatVersion: 2
+guid: 08ad6a59128756243965fe1c6f1a2d6a
+timeCreated: 1441733847
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: navequebrada1
+    100004: NaveQuebrada10
+    100006: NaveQuebrada2
+    100008: NaveQuebrada3
+    100010: NaveQuebrada4
+    100012: NaveQuebrada5
+    100014: NaveQuebrada6
+    100016: NaveQuebrada7
+    100018: NaveQuebrada8
+    100020: NaveQuebrada9
+    400000: //RootNode
+    400002: navequebrada1
+    400004: NaveQuebrada10
+    400006: NaveQuebrada2
+    400008: NaveQuebrada3
+    400010: NaveQuebrada4
+    400012: NaveQuebrada5
+    400014: NaveQuebrada6
+    400016: NaveQuebrada7
+    400018: NaveQuebrada8
+    400020: NaveQuebrada9
+    2300000: navequebrada1
+    2300002: NaveQuebrada10
+    2300004: NaveQuebrada2
+    2300006: NaveQuebrada3
+    2300008: NaveQuebrada4
+    2300010: NaveQuebrada5
+    2300012: NaveQuebrada6
+    2300014: NaveQuebrada7
+    2300016: NaveQuebrada8
+    2300018: NaveQuebrada9
+    3300000: navequebrada1
+    3300002: NaveQuebrada10
+    3300004: NaveQuebrada2
+    3300006: NaveQuebrada3
+    3300008: NaveQuebrada4
+    3300010: NaveQuebrada5
+    3300012: NaveQuebrada6
+    3300014: NaveQuebrada7
+    3300016: NaveQuebrada8
+    3300018: NaveQuebrada9
+    4300000: navequebrada1
+    4300002: NaveQuebrada2
+    4300004: NaveQuebrada3
+    4300006: NaveQuebrada4
+    4300008: NaveQuebrada5
+    4300010: NaveQuebrada6
+    4300012: NaveQuebrada7
+    4300014: NaveQuebrada8
+    4300016: NaveQuebrada9
+    4300018: NaveQuebrada10
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 1
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
