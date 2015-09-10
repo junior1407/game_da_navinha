@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
 	Gerenciador_UI gerente;
+	public Animator animador;
 	public static  int vida;
 	public float speed = 10.0f;
 	public float tilt=3.2f;
@@ -12,7 +14,8 @@ public class PlayerController : MonoBehaviour {
 	public float fireRate;
 	public float nextFire;
 	public static GerenciadorPool pollTiros;
-			
+	public int balas;			
+	public Text nBalas;
 	void Awake(){
 		GameObject vida3=GameObject.Find ("heart_3");
 		GameObject vida2=GameObject.Find ("heart_2");
@@ -20,9 +23,14 @@ public class PlayerController : MonoBehaviour {
 		gerente = new Gerenciador_UI (vida3, vida2, vida1);
 		pollTiros = new GerenciadorPool ((GameObject) Resources.Load ("TiroKawaii"), 2);
 	}
+
+	public void AttNumeroBala(){
+		nBalas.text = balas.ToString();
+	}
 	void Start(){
 		vida = 3;
 		nextFire = 0.0f;
+		balas = 100;
 	}
 
 	void AttMostradorDeVida(){
@@ -37,7 +45,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void Atirar(){
-	    if (Time.time > nextFire) {
+	    if ((Time.time > nextFire)&&(balas>0)) {
+			balas--;
+			AttNumeroBala();
 			nextFire=Time.time+fireRate;
 			pollTiros.AtivarGameObject(new Vector3(spawnTiro.position.x,0.0f));
 		}
@@ -49,11 +59,9 @@ public class PlayerController : MonoBehaviour {
 	//	Debug.Log (Time.time);
 
 
-		if ((Input.GetKeyDown (KeyCode.Space))&&(Time.time>nextFire)) {
-			nextFire=Time.time+fireRate;
-			//Instantiate ((Resources.Load("TiroKawaii")),new Vector3(spawnTiro.position.x,0.0f), spawnTiro.rotation);
-			pollTiros.AtivarGameObject(new Vector3(spawnTiro.position.x,0.0f));
-		//	pollTiros.StringsOP();
+		if ((Input.GetKeyDown (KeyCode.Space))){
+			Atirar ();
+		
 		}
 	}
 
@@ -92,19 +100,32 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	IEnumerator animacaoDano(){
-
+		animador.SetBool ("ativo", true);
+		yield return new WaitForSeconds (0.5f);
+		animador.SetBool ("ativo", false);
 		yield return 0;
 	}
 
 
+
+	IEnumerator restartLevel(){
+		Debug.Log ("chegou");
+		yield return new WaitForSeconds(5);
+		//Debug.Log ("passou");
+		Application.LoadLevel(Application.loadedLevel);
+	//	yield return 1;
+	}
 
 	public void TomarDano(){
 	
 		vida--;AttMostradorDeVida();
 		StartCoroutine (animacaoDano ());
 		if (vida == 0) {	
-			Destroy (gameObject);
-			Application.LoadLevel(Application.loadedLevel);
+			//Destroy (gameObject);
+			gameObject.transform.position=new Vector3(100,100);
+
+
+			StartCoroutine(restartLevel());
 		}
 
 	}

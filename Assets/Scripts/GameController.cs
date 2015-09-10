@@ -5,8 +5,9 @@ using System.IO;
 
 public class GameController : MonoBehaviour {
 
-
+	public GameObject canvasPause;
 	public static float velocidade_jogo;
+	bool pausado;
 	static Text wave;
 	public Text textoScore;
 	CaixaWave caixaWave;
@@ -57,6 +58,8 @@ public class GameController : MonoBehaviour {
 	}
 
 	void Awake(){
+	
+		pausado = false;
 		velocidade_jogo = 1.0f;
 		caixaWave = GameObject.FindGameObjectWithTag ("caixa-wave").GetComponent<CaixaWave> ();
 		caixaWave.Startar ();
@@ -64,7 +67,9 @@ public class GameController : MonoBehaviour {
 	
 
 	IEnumerator StartJogo(){
+
 		int wave = 1;
+		yield return new WaitForSeconds (2);
 		while (wave<50) {
 			StartCoroutine(caixaWave.Atualizar(wave));
 		//	StartCoroutine (caixaWave.des());
@@ -223,12 +228,39 @@ public class GameController : MonoBehaviour {
 		//pollMeteoros_comuns.FirstRunSpawn ();
 
 
-	
+
+
+
 	}
+	public void reiniciarJogo(){
+		Application.LoadLevel (Application.loadedLevel);
+	}
+
+	public void pausar_despausar(){
+		if (pausado == true) {
+			pausado = false;
+			Time.timeScale = 1.0f;
+			canvasPause.SetActive(false);
+		} else {
+			pausado=true;
+			Time.timeScale=0.0f;
+			canvasPause.SetActive(true);
+		
+		}
+
+
+	}
+
+
 	
 	// Update is called once per frame
 	void Update () {
-        score += Time.deltaTime;
+		score += Time.deltaTime;
+
+		if (Input.GetKeyDown (KeyCode.P)) {
+			pausar_despausar();
+		}
+	
 
 
 		velocidade_jogo = velocidade_jogo + (Time.deltaTime/90);

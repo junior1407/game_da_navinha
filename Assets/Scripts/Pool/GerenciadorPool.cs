@@ -36,11 +36,12 @@ public class GerenciadorPool{
 		atual.transform.position = posicao;
 		atual.SetActive (true);
 		stackBusy.Push (atual);
-		if (prefab.tag != "tiro") {
+		/*if (prefab.tag != "tiro") {
 
 Debug.Log ("Busy: " + stackBusy.Count + " Livre:" + stackLivres.Count); 
-		}
+		}*/
 	}
+
 
 
 
