@@ -7,12 +7,18 @@ public class BaseItem : MonoBehaviour
 	public bool ocultado;
 	//public GameObject anterior;
 	public Transform transform_filho;
+	public Vector3 posicaoEu;
+	public Vector3 posicaoinvi;
 	public Vector2 teste;
+	public float distancia;
 
 	void Start(){
 	//	ocultado = true;
 		transform_filho = Descricao.GetComponent<Transform> ();
-
+		posicaoEu = transform.position;
+		posicaoinvi = Descricao.transform.position;
+		distancia = -posicaoEu.y + posicaoinvi.y + 12;
+		Descricao.transform.localPosition = new Vector3 (0, 0, 0);
 
 	}
 
@@ -20,14 +26,14 @@ public class BaseItem : MonoBehaviour
 		if (ocultado == false) {
 
 			ocultado=true;
-			transform_filho.Translate(new Vector3(0,60));
+			transform_filho.Translate(new Vector3(0,distancia));
 			///Descricao.transform.position= new Vector3(tran
 			//ocultado=true;
 
 		}
 		else { // Se ele tiver oculto.
 			ocultado=false;
-			transform_filho.Translate(new Vector3(0,-60));
+			transform_filho.Translate(new Vector3(0,-distancia));
 			//rectTransform.position= new Vector3
 			//Descricao.transform.Translate(0,transform.position.y-GetComponent<RectTransform>().sizeDelta.y,0);
 		//	rectTransform.position= new Vector3(transformz.position.x,transformz.position.y+50);
@@ -37,7 +43,9 @@ public class BaseItem : MonoBehaviour
 	public void mover (){}
 
 	void Update(){
-		Debug.Log (transform.position.y -transform_filho.position.y);
+		posicaoEu = transform.position;
+		posicaoinvi = Descricao.transform.localPosition;
+
 	}
 
 }
