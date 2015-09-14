@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour {
 
 	IEnumerator StartJogo(){
 
-		int wave = 1;
+		int wave = 3;
 		yield return new WaitForSeconds (2);
 		while (wave<50) {
 			StartCoroutine(caixaWave.Atualizar(wave));

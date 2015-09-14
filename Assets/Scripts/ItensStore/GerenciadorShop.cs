@@ -5,18 +5,18 @@ using System.Collections.Generic;
 public class GerenciadorShop : MonoBehaviour {
 
 	public BaseItem item1;
-	public List<BaseItem> listinha;
+	public List<GameObject> listinha;
 
 
 
+	void Awake(){
+		listinha.AddRange(GameObject.FindGameObjectsWithTag ("item"));
 
-	void Start(){
-		listinha.Add (item1);
+		Debug.Log ("oi");
 
 	}
+		
 
-	public void mover(BaseItem atual){
 
-		atual.mover ();
-	}
+
 }

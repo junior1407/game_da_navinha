@@ -49,8 +49,8 @@ public class MeteoroBase : MonoBehaviour {
 
 	public void TomarDano(){
 		//Debug.Log ("gg");
-		vida_atual--;
-		if (vida_atual == 0) {
+		vida_atual-=PlayerController.dano;
+		if (vida_atual <= 0) {
 			DestruirItSelf ();
 			GameController.addPontos(pontos);
 
@@ -60,7 +60,7 @@ public class MeteoroBase : MonoBehaviour {
 		if (target.tag == "tiro") {
 			target.GetComponent<Tiro>().resetar();	
 			PlayerController.pollTiros.reutilizar(target.gameObject);
-			if (vida_atual==1){
+			if (vida_atual-PlayerController.dano<=0){
 				GameController.pollPartMeteoroC.AtivarGameObject(transform.position);
 			}
 			TomarDano();

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
 	Gerenciador_UI gerente;
+	public static int dano;
 	public Animator animador;
 	public static  int vida;
 	public float speed = 10.0f;
@@ -14,27 +15,35 @@ public class PlayerController : MonoBehaviour {
 	public float fireRate;
 	public float nextFire;
 	public static GerenciadorPool pollTiros;
-	public int balas;			
+	public static int balas;			
 	public Text nBalas;
 	void Awake(){
+		GameObject vida4=GameObject.Find ("heart_4");
 		GameObject vida3=GameObject.Find ("heart_3");
 		GameObject vida2=GameObject.Find ("heart_2");
 		GameObject vida1=GameObject.Find ("heart_1");
-		gerente = new Gerenciador_UI (vida3, vida2, vida1);
+		vida4.SetActive (true);
+		gerente = new Gerenciador_UI (vida4,vida3, vida2, vida1);
 		pollTiros = new GerenciadorPool ((GameObject) Resources.Load ("TiroKawaii"), 2);
+		vida = 4;
+		nextFire = 0.0f;
+		balas = 100;
+		dano = 4;
 	}
 
 	public void AttNumeroBala(){
 		nBalas.text = balas.ToString();
 	}
 	void Start(){
-		vida = 3;
-		nextFire = 0.0f;
-		balas = 100;
+	  
+		ConfereMostradorDeVida ();
 	}
 
 	void AttMostradorDeVida(){
 		gerente.att (vida);
+	}
+	void ConfereMostradorDeVida(){
+		gerente.confere (vida);
 	}
 
 	void OnTriggerEnter(Collider target){
@@ -100,9 +109,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	IEnumerator animacaoDano(){
-		animador.SetBool ("ativo", true);
-		yield return new WaitForSeconds (0.5f);
-		animador.SetBool ("ativo", false);
+		animador.SetTrigger ("tomar");
 		yield return 0;
 	}
 
@@ -117,9 +124,10 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void TomarDano(){
-	
+		Debug.Log ("rolou");
 		vida--;AttMostradorDeVida();
 		StartCoroutine (animacaoDano ());
+
 		if (vida == 0) {	
 			//Destroy (gameObject);
 			gameObject.transform.position=new Vector3(100,100);
