@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 	public static GerenciadorPool pollTiros;
 	public static int balas;			
 	public Text nBalas;
+	public PlayerPropriedades p;
 	void Awake(){
 		GameObject vida4=GameObject.Find ("heart_4");
 		GameObject vida3=GameObject.Find ("heart_3");
@@ -37,6 +38,10 @@ public class PlayerController : MonoBehaviour {
 	void Start(){
 	  
 		ConfereMostradorDeVida ();
+		p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
+		p.inventario.AplicarTodasParadas ();
+		AttNumeroBala ();
+
 	}
 
 	void AttMostradorDeVida(){

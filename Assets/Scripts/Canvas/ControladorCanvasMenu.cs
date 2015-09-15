@@ -11,7 +11,12 @@ public class ControladorCanvasMenu : MonoBehaviour {
 
 	public void StartGame(){
 		Application.LoadLevel ("scene1");
+
 	}
+	public void OpenShop(){
+		Application.LoadLevel ("CenaShop");
+	}
+
 	public void ExitGame(){
 		Application.Quit ();
 	}

@@ -62,16 +62,19 @@ public class GameController : MonoBehaviour {
 		pausado = false;
 		velocidade_jogo = 1.0f;
 		caixaWave = GameObject.FindGameObjectWithTag ("caixa-wave").GetComponent<CaixaWave> ();
-		caixaWave.Startar ();
+
 	}
 	
 
 	IEnumerator StartJogo(){
 
 		int wave = 3;
-		yield return new WaitForSeconds (2);
+
+		yield return new WaitForSeconds (4);	Debug.Log ("cTerminou");
 		while (wave<50) {
 			StartCoroutine(caixaWave.Atualizar(wave));
+
+			caixaWave.Startar ();
 		//	StartCoroutine (caixaWave.des());
 		   switch(wave){
 
