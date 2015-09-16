@@ -66,6 +66,8 @@ public class PlayerController : MonoBehaviour {
 			AttNumeroBala();
 			nextFire=Time.time+fireRate;
 			pollTiros.AtivarGameObject(new Vector3(spawnTiro.position.x,0.0f));
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.Play ();
 		}
 	
 	}
