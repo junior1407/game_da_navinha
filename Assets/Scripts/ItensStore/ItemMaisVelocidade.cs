@@ -3,13 +3,10 @@ using System.Collections;
 
 public class ItemMaisVelocidade : BaseItem {
 
-	void Start(){
-	//	incremento = new 
+	void Awake(){
+		incremento = new VelocidadeMais ();
 	}
-	public override void OcultarDescolutar(){
-		base.OcultarDescolutar ();
-	}
- 
+
 
 	}
 

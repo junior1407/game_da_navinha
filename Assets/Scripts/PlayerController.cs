@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
 	Gerenciador_UI gerente;
-	public static int dano;
+	public static float dano;
 	public Animator animador;
 	public static  int vida;
-	public float speed = 10.0f;
+	public static float speed;
 	public float tilt=3.2f;
 	public Transform spawnTiro;
 	public float fireRate;
@@ -26,10 +26,11 @@ public class PlayerController : MonoBehaviour {
 		vida4.SetActive (true);
 		gerente = new Gerenciador_UI (vida4,vida3, vida2, vida1);
 		pollTiros = new GerenciadorPool ((GameObject) Resources.Load ("TiroKawaii"), 2);
-		vida = 4;
+		vida = 3;
 		nextFire = 0.0f;
 		balas = 100;
-		dano = 4;
+		dano = 1;
+		speed = 10.0f;
 	}
 
 	public void AttNumeroBala(){
@@ -37,9 +38,10 @@ public class PlayerController : MonoBehaviour {
 	}
 	void Start(){
 	  
-		ConfereMostradorDeVida ();
+
 		p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
 		p.inventario.AplicarTodasParadas ();
+		ConfereMostradorDeVida ();
 		AttNumeroBala ();
 
 	}

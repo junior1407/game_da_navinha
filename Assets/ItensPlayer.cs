@@ -20,6 +20,7 @@ public class ItensPlayer {
 	public void AplicarTodasParadas(){
 		foreach (BaseIncremento atual in incrementos) {
 			atual.aplicar();
+			Debug.Log ("aplicado");
 		}
 
 

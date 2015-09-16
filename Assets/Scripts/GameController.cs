@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour {
 
 	IEnumerator StartJogo(){
 
-		int wave = 3;
+		int wave = 4;
 
 		yield return new WaitForSeconds (4);	Debug.Log ("cTerminou");
 		while (wave<50) {
@@ -259,7 +259,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		score += Time.deltaTime;
-
+		Debug.Log (PlayerController.dano);
 		if (Input.GetKeyDown (KeyCode.P)) {
 			pausar_despausar();
 		}

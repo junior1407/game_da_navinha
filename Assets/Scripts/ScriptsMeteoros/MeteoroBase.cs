@@ -9,7 +9,7 @@ public class MeteoroBase : MonoBehaviour {
 
 	public float velocidade_base;
 	public float velocidade_jogo;
-	public int vida_atual;
+	public float vida_atual;
 	public int vida_max;
 
 	void OnEnable(){

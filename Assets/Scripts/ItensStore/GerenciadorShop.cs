@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 
 public class GerenciadorShop : MonoBehaviour {
 
@@ -24,8 +25,13 @@ public class GerenciadorShop : MonoBehaviour {
 	}
 
 	void Awake(){
+		try{
 		canvasAreYouSure = GameObject.Find ("CanvasAreYouSure");
-		canvasAreYouSure.SetActive (false);
+			canvasAreYouSure.SetActive (false);}
+		catch(NullReferenceException e){
+			Debug.Log("Canvas 'are you sure' nao existente ou desativado. Corriga isso programador fdp");
+		}
+
 		listinha.AddRange(GameObject.FindGameObjectsWithTag ("item"));
 		AttTextoGold ();
 
@@ -34,9 +40,17 @@ public class GerenciadorShop : MonoBehaviour {
 	
 	}
 	void Start(){
-		p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
-		gold = p.inventario.gold;
+
+		try{
+
+			p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
+		    gold = p.inventario.gold;
+		}catch(NullReferenceException e){
+			Debug.Log ("'player-itens' nao encontrado. Erro no loading ou vc n passou pela scene main menu");
+
+		}
 	}
+
 
 
 	public void ComprarAtual(){
@@ -47,7 +61,13 @@ public class GerenciadorShop : MonoBehaviour {
 
 			selecionado.btnComprar.interactable=false;
 			FecharAreYouSure();
-			p.inventario.addIncremento(selecionado.incremento);
+			try{
+
+				p.inventario.addIncremento(selecionado.incremento);}
+			catch(NullReferenceException e){
+				Debug.Log ("'player-itens' nao encontrado. Erro no loading ou vc n passou pela scene main menu");
+			}
+
 			AttTextoGold();
 		}
 		else{

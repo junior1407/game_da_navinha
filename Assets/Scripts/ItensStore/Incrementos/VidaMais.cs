@@ -4,12 +4,15 @@ using System.Collections;
 public class VidaMais : BaseIncremento
 {
 	public int incremento;
+	public VidaMais(){
+		incremento = 1;
+	}
 
 
 
 	public override void aplicar ()
 	{
-		PlayerController.vida += 1;
+		PlayerController.vida += incremento;
 
 	}
 
