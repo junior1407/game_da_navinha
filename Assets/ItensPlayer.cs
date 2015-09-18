@@ -14,13 +14,13 @@ public class ItensPlayer {
 
 	public  void addIncremento(BaseIncremento a){
 		incrementos.Add (a);
-		Debug.Log (incrementos [0]);
+		//Debug.Log (incrementos [0]);
 	}
 
 	public void AplicarTodasParadas(){
 		foreach (BaseIncremento atual in incrementos) {
 			atual.aplicar();
-			Debug.Log ("aplicado");
+		//	Debug.Log ("aplicado");
 		}
 
 

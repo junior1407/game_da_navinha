@@ -13,7 +13,7 @@ public class DanoMais : BaseIncremento
 	public override void aplicar ()
 	{
 		PlayerController.dano += incremento;
-		Debug.Log ("EU TBM FUI APLICADO QUE DLC");
+		//Debug.Log ("EU TBM FUI APLICADO QUE DLC");
 	}
 
 }

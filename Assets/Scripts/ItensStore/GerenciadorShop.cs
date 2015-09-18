@@ -54,8 +54,8 @@ public class GerenciadorShop : MonoBehaviour {
 
 
 	public void ComprarAtual(){
-		Debug.Log (gold);
-		Debug.Log (selecionado.name);
+		//Debug.Log (gold);
+		//Debug.Log (selecionado.name);
 		if (gold >= selecionado.preco) {
 			gold -=selecionado.preco;
 

@@ -1,10 +1,16 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using System;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
-
+	bool vivo;
+	public GameObject canvasGameOver;
+	public Text textGameOver;
+	public GameObject explodir;
+	float moveHorizontal;
+	public GameObject corpo;
 	Gerenciador_UI gerente;
 	public static float dano;
 	public Animator animador;
@@ -19,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 	public Text nBalas;
 	public PlayerPropriedades p;
 	void Awake(){
+		vivo = true;
 		GameObject vida4=GameObject.Find ("heart_4");
 		GameObject vida3=GameObject.Find ("heart_3");
 		GameObject vida2=GameObject.Find ("heart_2");
@@ -39,8 +46,13 @@ public class PlayerController : MonoBehaviour {
 	void Start(){
 	  
 
-		p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
-		p.inventario.AplicarTodasParadas ();
+		try{
+			p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
+			p.inventario.AplicarTodasParadas ();}
+		catch(NullReferenceException e){
+			Debug.Log ("player-itens n encontrado. FUCK");
+
+		}
 		ConfereMostradorDeVida ();
 		AttNumeroBala ();
 
@@ -81,31 +93,40 @@ public class PlayerController : MonoBehaviour {
 			Atirar ();
 		
 		}
+		//Debug.Log (Time.timeScale);
 	}
 
 	
 
 	void FixedUpdate ()
 	{
-		float moveHorizontal;
-		moveHorizontal = Input.GetAxis ("Horizontal");
-#if UNITY_WP8
-		 moveHorizontal = Input.acceleration.x;
-#endif
+		if (vivo)
+			Mover ();
 
-		#if UNITY_WP8_API
-		 moveHorizontal = Input.acceleration.x;
-		#endif
+	}
 
-
-
-#if UNITY_EDITOR
-		 moveHorizontal = Input.GetAxis ("Horizontal");
-#endif
-
+	public void Mover(){
 		
-		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, 0.0f);
-		GetComponent<Rigidbody>().velocity = movement * speed;
+		
+		
+		moveHorizontal = Input.GetAxis ("Horizontal");
+		#if UNITY_WP8
+		moveHorizontal = Input.acceleration.x;
+		#endif
+		
+		#if UNITY_WP8_API
+		moveHorizontal = Input.acceleration.x;
+		#endif
+		
+		
+		
+		#if UNITY_EDITOR
+		moveHorizontal = Input.GetAxis ("Horizontal");
+		#endif
+		
+		
+		
+		GetComponent<Rigidbody>().velocity = new Vector3 (moveHorizontal, 0.0f, 0.0f) * speed;
 		
 		GetComponent<Rigidbody>().position = new Vector3 
 			(
@@ -115,34 +136,48 @@ public class PlayerController : MonoBehaviour {
 				);
 		
 		GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
+
 	}
 
 	IEnumerator animacaoDano(){
+
 		animador.SetTrigger ("tomar");
 		yield return 0;
 	}
 
 
 
-	IEnumerator restartLevel(){
-		Debug.Log ("chegou");
-		yield return new WaitForSeconds(5);
-		//Debug.Log ("passou");
-		Application.LoadLevel(Application.loadedLevel);
-	//	yield return 1;
-	}
+	public void restartLevel(){
+	
+		GameController.Resetar ();
 
+		Application.LoadLevel(Application.loadedLevel);
+		Time.timeScale=1.0f;
+
+	}
+	IEnumerator MostraGameOver(){
+		yield return new WaitForSeconds(2);
+		Time.timeScale = 0.0f;
+		textGameOver.text = "You got: " + (int)GameController.score+" COINS"; 
+		canvasGameOver.SetActive (true);
+		yield return 0;
+
+
+	}
 	public void TomarDano(){
-		Debug.Log ("rolou");
+		//Debug.Log ("rolou");
 		vida--;AttMostradorDeVida();
 		StartCoroutine (animacaoDano ());
 
 		if (vida == 0) {	
 			//Destroy (gameObject);
-			gameObject.transform.position=new Vector3(100,100);
-
-
-			StartCoroutine(restartLevel());
+			corpo.SetActive(false);
+			explodir.SetActive(true);
+			vivo=false;
+			//gameObject.transform.position=new Vector3(100,100);
+			StartCoroutine(MostraGameOver ());
+		
+			//StartCoroutine(restartLevel());
 		}
 
 	}

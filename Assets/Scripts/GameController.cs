@@ -5,9 +5,16 @@ using System.IO;
 
 public class GameController : MonoBehaviour {
 
+
+
+
 	public GameObject canvasPause;
 	public static float velocidade_jogo;
 	bool pausado;
+	bool waveRodando;
+	float incrementoGold;
+
+	public ControladorSkyboxes controlsky;
 	static Text wave;
 	public Text textoScore;
 	CaixaWave caixaWave;
@@ -58,52 +65,83 @@ public class GameController : MonoBehaviour {
 	}
 
 	void Awake(){
-	
+		Time.timeScale = 1.0f;
+		incrementoGold = 0.5f;
+		waveRodando = false;
 		pausado = false;
 		velocidade_jogo = 1.0f;
 		caixaWave = GameObject.FindGameObjectWithTag ("caixa-wave").GetComponent<CaixaWave> ();
+
+		//Debug.Log (z.GetType ());
 
 	}
 	
 
 	IEnumerator StartJogo(){
 
-		int wave = 4;
+		int wave = 3;
 
-		yield return new WaitForSeconds (4);	Debug.Log ("cTerminou");
+		yield return new WaitForSeconds (4);
+
 		while (wave<50) {
-			StartCoroutine(caixaWave.Atualizar(wave));
+
+			if (wave%7==0){
+				controlsky.MudarSkybox();
+			}
+			StartCoroutine (caixaWave.Atualizar (wave));
 
 			caixaWave.Startar ();
-		//	StartCoroutine (caixaWave.des());
-		   switch(wave){
+			//	StartCoroutine (caixaWave.des());
+			//controlsky.MudarSkybox();
 
-			case 1: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,1,0,0));
-				break;}
-			case 2: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,1,2));
-				break;}
-			case 3: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,1,2));
-				break;}
-			case 4: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,1,3));
-				break;}
-			case 5: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,3,0,0));
-				break;}
-			case 6: {yield return StartCoroutine(WaveGenerator(15.0f,1.0f,3,0,0));
-				break;}
-			default : yield return StartCoroutine(WaveGenerator(Random.Range(15.0f, 20.0f),1.0f,4,0,0)); break;
+			waveRodando=true;
+			switch (wave) {
+					
+			
+			case 1:
+				{
+					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 1, 0, 0));
+					break;}
+			case 2:
+				{
+					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 1, 2));
+					break;}
+			case 3:
+				{
+					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 1, 2));
+					break;}
+			case 4:
+				{
+					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 1, 3));
+					break;}
+			case 5:
+				{
+					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 3, 0, 0));
+					break;}
+			case 6:
+				{
+					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 3, 0, 0));
+					break;}
+
+			default :
+				yield return StartCoroutine (WaveGenerator (Random.Range (15.0f, 20.0f), 1.0f, 4, 0, 0));
+				break;
 
 			}
+			waveRodando = false;
 				
-			yield return new WaitForSeconds(7);
+			yield return new WaitForSeconds (7);
 			wave++;
-
-			}
+			if (wave <= 5)
+				velocidade_jogo += 0.2f;
+			if (wave > 5)
+				velocidade_jogo += 0.05f;
 			
 
 
 			
-			}
-
+		}
+	}
 	
 	
 
@@ -169,6 +207,7 @@ public class GameController : MonoBehaviour {
 			
 			
 		}
+
 		yield return 0;
 		
 	}
@@ -228,6 +267,7 @@ public class GameController : MonoBehaviour {
 		pollPartMeteoroC = new GerenciadorParticula (partMeteoroComum, 4);
 		pollPartMeteoroE = new GerenciadorParticula (partExplosao, 3);
 		StartCoroutine (StartJogo ());
+		 
 		//pollMeteoros_comuns.FirstRunSpawn ();
 
 
@@ -235,9 +275,25 @@ public class GameController : MonoBehaviour {
 
 
 	}
-	public void reiniciarJogo(){
-		Application.LoadLevel (Application.loadedLevel);
+	public void AbrirShop(){
+		Application.LoadLevel ("CenaShop");
+
 	}
+	public void QuitToMenu(){
+		Application.LoadLevel (0);
+	}
+
+	public static void Resetar(){
+		score = 0;
+	}
+
+	public void reiniciarJogo(){
+		score = 0;
+		pausar_despausar ();
+		Application.LoadLevel (Application.loadedLevel);
+	
+	}
+
 
 	public void pausar_despausar(){
 		if (pausado == true) {
@@ -258,15 +314,18 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		score += Time.deltaTime;
-		Debug.Log (PlayerController.dano);
+	if (waveRodando) {
+			score += Time.deltaTime*incrementoGold;
+		}
+
+	//	Debug.Log (PlayerController.dano);
 		if (Input.GetKeyDown (KeyCode.P)) {
 			pausar_despausar();
 		}
 	
 
 
-		velocidade_jogo = velocidade_jogo + (Time.deltaTime/90);
+
 	
 		atualizaPontos ();
 
