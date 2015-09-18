@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour {
 
 	IEnumerator StartJogo(){
 
-		int wave = 3;
+		int wave = 6;
 
 		yield return new WaitForSeconds (4);
 
@@ -88,9 +88,10 @@ public class GameController : MonoBehaviour {
 			if (wave%7==0){
 				controlsky.MudarSkybox();
 			}
-			StartCoroutine (caixaWave.Atualizar (wave));
+			caixaWave.Atualizar(wave);
 
 			caixaWave.Startar ();
+			yield return new WaitForSeconds(1);
 			//	StartCoroutine (caixaWave.des());
 			//controlsky.MudarSkybox();
 

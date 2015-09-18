@@ -6,17 +6,19 @@ public class MeteoroBase : MonoBehaviour {
 
 
 	public float pontos;
-
+	public AudioSource destroiAudio;
 	public float velocidade_base;
 	public float velocidade_jogo;
 	public float vida_atual;
 	public int vida_max;
+	public MeshRenderer mesh;
 
 	void OnEnable(){
 		atualizar_velocidadejogo ();
 	}
 	 void Awake(){
 		vida_max = 1;
+
 
 
 
@@ -39,7 +41,9 @@ public class MeteoroBase : MonoBehaviour {
 	// Update is called once per frame
 
 	public virtual void DestruirItSelf(){
-	
+
+		Debug.Log ("rodei?");
+		mesh.enabled = true;
 		vida_atual = vida_max;
 		atualizar_velocidadejogo ();
 		GameController.pollMeteoros_comuns.reutilizar (gameObject);
@@ -47,16 +51,30 @@ public class MeteoroBase : MonoBehaviour {
 
 	}
 
-	public void TomarDano(){
+	public IEnumerator destruidoPorTiro(){
+
+		destroiAudio.Play();
+		transform.position = new Vector3 (0, 30, 20);
+		mesh.enabled = false;
+
+		yield return new WaitForSeconds(destroiAudio.clip.length);
+		Debug.Log ("audio tocado. mesh desabilitado");
+		DestruirItSelf ();
+		yield return 1;
+	}
+
+	public virtual void TomarDano(){
+	
 		//Debug.Log ("gg");
 		vida_atual-=PlayerController.dano;
 		if (vida_atual <= 0) {
-			DestruirItSelf ();
+			Debug.Log ("Destruido1");
+			StartCoroutine(destruidoPorTiro());
 			GameController.addPontos(pontos);
 
 		}	
 	}
-	void OnTriggerEnter(Collider target){
+  void OnTriggerEnter(Collider target){
 		if (target.tag == "tiro") {
 			target.GetComponent<Tiro>().resetar();	
 			PlayerController.pollTiros.reutilizar(target.gameObject);
@@ -78,6 +96,7 @@ public class MeteoroBase : MonoBehaviour {
 		transform.Translate (new Vector3 (0, 0, -1) * (velocidade_base + velocidade_jogo) * Time.deltaTime);
 	}
 	void EDestruido(){
+
 		if (transform.position.z < -1) {
 			DestruirItSelf();
 		}

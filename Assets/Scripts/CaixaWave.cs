@@ -15,17 +15,10 @@ public class CaixaWave: MonoBehaviour {
 	}
 
 
-	public IEnumerator Atualizar(int numero){
+	public void Atualizar(int numero){
 		texto.text = ("Wave " + numero);
-	//	yield return StartCoroutine (Aparecer ());
-
-//		yield return StartCoroutine (Desaparecer ());
-		yield return 0;
-
-
-
-	
 	}
+
 
 
 

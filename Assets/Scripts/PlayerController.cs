@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 	bool vivo;
+	AudioSource audio;
 	public GameObject canvasGameOver;
 	public Text textGameOver;
 	public GameObject explodir;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour {
 	public Text nBalas;
 	public PlayerPropriedades p;
 	void Awake(){
+		audio= GetComponent<AudioSource>();
 		vivo = true;
 		GameObject vida4=GameObject.Find ("heart_4");
 		GameObject vida3=GameObject.Find ("heart_3");
