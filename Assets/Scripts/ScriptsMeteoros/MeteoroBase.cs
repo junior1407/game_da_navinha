@@ -86,7 +86,7 @@ public class MeteoroBase : MonoBehaviour {
 		}
 
 
-
+			
 	}
 
 

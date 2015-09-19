@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour {
 	public GameObject meteoroHard;
 	public GameObject meteoroExplosivo;
 	public GameObject meteoroIndestruct;
-	public int numero_de_inimigos;
+
 	public static GerenciadorPool pollMeteoros_comuns;
 	public static GerenciadorPool pollMeteoros_hard;
 	public static GerenciadorPool pollMeteoros_explosivo;
@@ -53,6 +53,7 @@ public class GameController : MonoBehaviour {
 		byte[] bytes = File.ReadAllBytes(saveFile);        
 		GameProgress gp = UnityWindowsPhonePlugin.FileIO.DeserializeObject<GameProgress>(bytes);
 	}	*/
+
 
 
 	public static void addPontos(float pontos){
@@ -259,7 +260,7 @@ public class GameController : MonoBehaviour {
 
 
 	void Start () {
-		numero_de_inimigos = 50;
+	
 	
 		 pollMeteoros_comuns = new GerenciadorPool (meteoroComum, 6);
 		pollMeteoros_hard = new GerenciadorPool (meteoroHard, 4);
