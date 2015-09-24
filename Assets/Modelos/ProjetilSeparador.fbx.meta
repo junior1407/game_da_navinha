@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 714fad3ab6a4efd47806bf5e24703fb5
-timeCreated: 1440637790
+guid: 7f765d5d57b79b243adda660de6dfd03
+timeCreated: 1443123948
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cone
+    4300000: AsteroideExplodidorProjetil
   materials:
     importMaterials: 1
     materialName: 0
@@ -37,7 +37,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
-    swapUVChannels: 1
+    swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
