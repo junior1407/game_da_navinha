@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿
+
+using UnityEngine;
 using System.Collections;
 
 public class MeteoroBase : MonoBehaviour {
@@ -7,6 +9,7 @@ public class MeteoroBase : MonoBehaviour {
 
 	public float pontos;
 	public AudioSource destroiAudio;
+
 	public float velocidade_base;
 	public float velocidade_jogo;
 	public float vida_atual;

@@ -10,6 +10,8 @@ public class ParticulaBase : MonoBehaviour
 	void Awake(){
 		tempovivo = 0.0f;
 	}
+
+
 	
 	// Update is called once per frame
 	void Update ()

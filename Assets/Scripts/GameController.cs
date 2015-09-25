@@ -25,11 +25,13 @@ public class GameController : MonoBehaviour {
 	public GameObject meteoroHard;
 	public GameObject meteoroExplosivo;
 	public GameObject meteoroIndestruct;
+	public GameObject meteoroFast;
 
 	public static GerenciadorPool pollMeteoros_comuns;
 	public static GerenciadorPool pollMeteoros_hard;
 	public static GerenciadorPool pollMeteoros_explosivo;
 	public static GerenciadorPool pollMeteoros_indestruct;
+	public static GerenciadorPool pollMeteoros_aceleradores;
 	public static GerenciadorParticula pollPartMeteoroC;
 	public static GerenciadorParticula pollPartMeteoroE;
 
@@ -80,7 +82,7 @@ public class GameController : MonoBehaviour {
 
 	IEnumerator StartJogo(){
 
-		int wave = 6;
+		int wave = 49;
 
 		yield return new WaitForSeconds (4);
 
@@ -124,6 +126,11 @@ public class GameController : MonoBehaviour {
 				{
 					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 3, 0, 0));
 					break;}
+
+			case 49:
+			{
+				yield return StartCoroutine(WaveGenerator(15.0f,1.0f,5,5));break;
+			}
 
 			default :
 				yield return StartCoroutine (WaveGenerator (Random.Range (15.0f, 20.0f), 1.0f, 4, 0, 0));
@@ -224,7 +231,7 @@ public class GameController : MonoBehaviour {
 			
 			
 			
-			int atual = Random.Range(1,5);
+			int atual = Random.Range(1,6);
 			
 			if ((atual==1)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
 				pollMeteoros_comuns.AtivarGameObject(posicaospawn);
@@ -246,7 +253,11 @@ public class GameController : MonoBehaviour {
 				
 			}
 			
-			
+				if ((atual==5)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
+				pollMeteoros_aceleradores.AtivarGameObject(posicaospawn);
+				yield return new WaitForSeconds(intervalo+0.2f+2.0f);tempo_passado+=intervalo+0.2f;
+				
+			}
 			
 			
 			
@@ -266,6 +277,7 @@ public class GameController : MonoBehaviour {
 		pollMeteoros_hard = new GerenciadorPool (meteoroHard, 4);
 		pollMeteoros_explosivo = new GerenciadorPool (meteoroExplosivo, 4);
 		pollMeteoros_indestruct = new GerenciadorPool (meteoroIndestruct, 4);
+		pollMeteoros_aceleradores = new GerenciadorPool (meteoroFast, 2);
 		pollPartMeteoroC = new GerenciadorParticula (partMeteoroComum, 4);
 		pollPartMeteoroE = new GerenciadorParticula (partExplosao, 3);
 		StartCoroutine (StartJogo ());
