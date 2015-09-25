@@ -54,7 +54,7 @@ public class MeteoroBase : MonoBehaviour {
 
 	}
 
-	public IEnumerator destruidoPorTiro(){
+	public virtual IEnumerator destruidoPorTiro(){
 
 		destroiAudio.Play();
 		transform.position = new Vector3 (0, 30, 20);

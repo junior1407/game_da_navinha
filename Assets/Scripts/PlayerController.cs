@@ -158,9 +158,10 @@ public class PlayerController : MonoBehaviour {
 
 	}
 	IEnumerator MostraGameOver(){
+		int Score = (int) GameController.score;
 		yield return new WaitForSeconds(2);
 		Time.timeScale = 0.0f;
-		textGameOver.text = "You got: " + (int)GameController.score+" COINS"; 
+		textGameOver.text = "You got: " +Score +" COINS"; 
 		canvasGameOver.SetActive (true);
 		yield return 0;
 

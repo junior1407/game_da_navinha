@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.IO;
@@ -82,11 +82,17 @@ public class GameController : MonoBehaviour {
 
 	IEnumerator StartJogo(){
 
-		int wave = 49;
+		int wave = 4;
 
 		yield return new WaitForSeconds (4);
-
+		float time=0;
 		while (wave<50) {
+
+			if (wave <5){
+				time=Random.Range(20,40);
+			}
+			if (wave>=5){
+				time=Random.Range (35,50);}
 
 			if (wave%7==0){
 				controlsky.MudarSkybox();
@@ -104,36 +110,71 @@ public class GameController : MonoBehaviour {
 			
 			case 1:
 				{
-					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 1, 0, 0));
+					yield return StartCoroutine (WaveGenerator (time, 1.0f, 1, 0, 0));
 					break;}
 			case 2:
 				{
-					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 1, 2));
+					yield return StartCoroutine (WaveGenerator (time, 1.0f, 1, 2));
 					break;}
 			case 3:
 				{
-					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 1, 2));
+					yield return StartCoroutine (WaveGenerator (time, 1.0f, 2, 3));
 					break;}
 			case 4:
 				{
-					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 1, 3));
+				yield return StartCoroutine (WaveGenerator (time, 1.0f, 2, 3));
 					break;}
 			case 5:
 				{
-					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 3, 0, 0));
+					yield return StartCoroutine (WaveGenerator (time, 1.0f, 3, 0, 0));  
 					break;}
 			case 6:
 				{
-					yield return StartCoroutine (WaveGenerator (15.0f, 1.0f, 3, 0, 0));
+				yield return StartCoroutine (WaveGenerator (time, 1.0f, 4, 0, 0)); // ADD SEPARANTE.
 					break;}
+		
+			//7 : Separante e quebraHARD
 
-			case 49:
+			case 8:
 			{
-				yield return StartCoroutine(WaveGenerator(15.0f,1.0f,5,5));break;
-			}
+				yield return StartCoroutine (WaveGenerator (time, 1.0f, 2, 3)); 
+				break;}
+
+			case 9:{
+
+				yield return StartCoroutine(WaveGenerator(time,1.0f,5,0,0));
+				                            break;}
+			//Separantes e acelerantes
+
+			case 11:{
+				yield return StartCoroutine(WaveGenerator(time,1.0f,1,5));
+				break;}	                           
+
+			case 12:{
+				yield return StartCoroutine(WaveGenerator(time,1.0f,3,5));
+				break;}
+
+				//  13: Quebra Hard, Acelerante	 e Separante
+			case 14:{
+				yield return StartCoroutine(WaveGenerator(time,1.0f,2,3));
+				break;}
+
+			case 15:{
+				yield return StartCoroutine(WaveGenerator(time,1.0f,5,4,0));
+				break;}
+
+			case 16:{
+				yield return StartCoroutine(WaveGenerator(time,1.0f,6,4,0));
+				break;}
+			case 17:{
+				yield return StartCoroutine(WaveGenerator(time,1.0f,1,6));
+				break;}
+
+
+		
 
 			default :
-				yield return StartCoroutine (WaveGenerator (Random.Range (15.0f, 20.0f), 1.0f, 4, 0, 0));
+				yield return StartCoroutine (WaveGenerator (time, 1.0f, 4, 0, 0));
 				break;
 
 			}
@@ -189,25 +230,40 @@ public class GameController : MonoBehaviour {
 
 
 			int atual = Random.Range(1,TiposMeteoro+1);
+			if (atual!=excluido){
 
 			if (atual==1){
 				pollMeteoros_comuns.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo);tempo_passado+=intervalo;
 			}
-			if (atual==3){
-				pollMeteoros_hard.AtivarGameObject(posicaospawn);
-				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
 
-			}
 			if (atual==2){
 				pollMeteoros_explosivo.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
 				
 			}
-			if (atual==4){
+
+			if (atual==3){
+				pollMeteoros_hard.AtivarGameObject(posicaospawn);
+				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
+
+			}
+
+				if (atual==4){
+					//Separante.
+				}
+				if (atual==5){
+					pollMeteoros_aceleradores.AtivarGameObject(posicaospawn);
+					yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
+				}
+
+
+			if (atual==6){
 				pollMeteoros_indestruct.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
 
+				}
+			
 			}
 
 			
@@ -231,31 +287,38 @@ public class GameController : MonoBehaviour {
 			
 			
 			
-			int atual = Random.Range(1,6);
+			int atual = Random.Range(1,7);
 			
 			if ((atual==1)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
 				pollMeteoros_comuns.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo);tempo_passado+=intervalo;
 			}
-			if ((atual==3)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
-				pollMeteoros_hard.AtivarGameObject(posicaospawn);
-				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
-				
-			}
+
 			if ((atual==2)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
 				pollMeteoros_explosivo.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
 				
 			}
-			if ((atual==4)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
-				pollMeteoros_indestruct.AtivarGameObject(posicaospawn);
+
+			if ((atual==3)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
+				pollMeteoros_hard.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
 				
 			}
-			
-				if ((atual==5)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
+		
+			// 4 SEPARANTE
+
+			if ((atual==5)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
+
+
 				pollMeteoros_aceleradores.AtivarGameObject(posicaospawn);
 				yield return new WaitForSeconds(intervalo+0.2f+2.0f);tempo_passado+=intervalo+0.2f;
+			}
+
+			
+				if ((atual==6)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
+				pollMeteoros_indestruct.AtivarGameObject(posicaospawn);
+				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
 				
 			}
 			

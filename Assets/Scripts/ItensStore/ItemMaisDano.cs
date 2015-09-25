@@ -9,4 +9,11 @@ public class ItemMaisDano : BaseItem  {
 	}
 
 
+
+	#region implemented abstract members of BaseItem
+	public override void AttEstadoItem (int level)
+	{
+		throw new System.NotImplementedException ();
+	}
+	#endregion
 }

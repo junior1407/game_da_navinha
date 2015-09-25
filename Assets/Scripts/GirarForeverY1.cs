@@ -1,13 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ControladorShop : MonoBehaviour {
+public class GirarForeverY1 : MonoBehaviour {
 
-
-
-	public void apertarBotao(){
-		Debug.Log ("Apertado");
-	}
 	// Use this for initialization
 	void Start () {
 	

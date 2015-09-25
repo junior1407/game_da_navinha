@@ -4,6 +4,23 @@ using System.Collections;
 	public class MeteoroAcelerador : MeteoroBase {
 	public AudioSource carregandoAudio;
 	public AudioSource RapidoAudio;
+
+	public override IEnumerator destruidoPorTiro(){
+		
+		destroiAudio.Play();
+		transform.position = new Vector3 (0, 30, 20);
+		mesh.enabled = false;
+		carregandoAudio.Stop ();
+		RapidoAudio.Stop ();
+		yield return new WaitForSeconds(destroiAudio.clip.length);
+		Debug.Log ("audio tocado. mesh desabilitado");
+		DestruirItSelf ();
+		yield return 1;
+	}
+
+
+
+
 	public override void DestruirItSelf ()
 	{
 		vida_atual = vida_max;
@@ -12,6 +29,7 @@ using System.Collections;
 		destroiAudio.Stop ();
 		RapidoAudio.Stop ();
 		carregandoAudio.Stop ();
+		velocidade_base = 1.0f;
 	}
 
 	IEnumerator Action(){
@@ -25,6 +43,7 @@ using System.Collections;
 	void OnEnable(){
 		atualizar_velocidadejogo ();
 		StartCoroutine (Action ());
+		mesh.enabled = true;
 
 	}
 
