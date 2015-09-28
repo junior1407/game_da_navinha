@@ -10,16 +10,23 @@ public class SceneLoading : MonoBehaviour {
 	}
 
 	IEnumerator Starto() {
+		Debug.Log ("oi");
+		PlayerPropriedades p;
 		GameObject o;
 		try{
-			o = GameObject.Find ("Player-Itens") as GameObject;}
+			o = GameObject.Find ("Player-Itens") as GameObject;
+	        p = o.GetComponent<PlayerPropriedades> ();
+			p.FornecerIncrementos ();}
 		catch(NullReferenceException){
-			o = GameObject.Find ("Player-Itens(Clone)") as GameObject;
+			Debug.Log ("erro lancado");
+			o = GameObject.FindGameObjectWithTag("save") as GameObject;
+			p = o.GetComponent<PlayerPropriedades> ();
+			p.FornecerIncrementos ();
 
 		}
 
-		PlayerPropriedades p = o.GetComponent<PlayerPropriedades> ();
-		p.FornecerIncrementos ();
+	
+
 	
 		AsyncOperation async = Application.LoadLevelAsync("scene1");
 		yield return async;

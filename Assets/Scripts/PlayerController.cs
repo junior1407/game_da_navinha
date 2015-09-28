@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour {
 			p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
 			}
 		catch(NullReferenceException){
-			p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
+			p = GameObject.Find ("Player-Itens(Clone)").GetComponent<PlayerPropriedades> ();
 			Debug.Log ("player-itens n encontrado. FUCK");
 
 		}

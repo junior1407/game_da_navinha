@@ -120,6 +120,12 @@ public class GerenciadorShop : MonoBehaviour {
 	void Update(){
 
 	}
+
+
+	public void MexerPraBaixo(){
+
+
+	}
 		
 
 
