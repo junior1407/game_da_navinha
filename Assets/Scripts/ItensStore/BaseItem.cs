@@ -4,6 +4,10 @@ using UnityEngine.UI;
 
 public abstract class BaseItem : MonoBehaviour
 {
+
+
+
+
 	public BaseIncremento incremento;
 
 	public GameObject[] interno;
@@ -41,7 +45,7 @@ public abstract class BaseItem : MonoBehaviour
 		}
 	
 
-		AttEstadoItem (dadoSave);
+
 
 
 	}
@@ -53,8 +57,7 @@ public abstract class BaseItem : MonoBehaviour
 	}
 
 	public virtual void OcultarDescolutar(){ 
-		Debug.Log (animador.enabled);
-
+	
 		if (ocultado == false) {
 			ocultado=true;
 			animador.SetTrigger("Ocultar");

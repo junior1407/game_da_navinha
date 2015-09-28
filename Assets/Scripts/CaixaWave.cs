@@ -8,7 +8,7 @@ public class CaixaWave: MonoBehaviour {
 	public Animator animador;
 
 	public void Startar(){
-		Debug.Log ("exibindo");
+	//	Debug.Log ("exibindo");
 		animador.SetTrigger ("mostra");
 		 
 

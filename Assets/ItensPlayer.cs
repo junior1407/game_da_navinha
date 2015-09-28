@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class ItensPlayer {
 
-	public int gold;
+
 	public static List<BaseIncremento> incrementos;
 
 	public ItensPlayer(){
-		gold = 100;
+
 		incrementos = new List<BaseIncremento>();
 
 	}
@@ -18,15 +18,15 @@ public class ItensPlayer {
 		//Debug.Log (incrementos [0]);
 	}
 
-	public void AmostrarIncremento(){
-		Debug.Log ("amostrando"+incrementos.Count );
-	}
+
 
 	public void AplicarTodasParadas(){
 
+		//Debug.Log (incrementos.Count);
 		foreach (BaseIncremento atual in incrementos) {
+
 			atual.aplicar();
-			Debug.Log ("aplicado");
+		
 		}
 
 

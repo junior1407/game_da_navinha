@@ -1,21 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class SceneLoading : MonoBehaviour {
 
-	void Awake(){
-		Debug.Log ("rodei");
-		StartCoroutine (Start ());
+	void Start(){
+
+		StartCoroutine (Starto ());
 	}
 
-	IEnumerator Start() {
-		GameObject o = GameObject.Find ("Player-Itens") as GameObject;
+	IEnumerator Starto() {
+		GameObject o;
+		try{
+			o = GameObject.Find ("Player-Itens") as GameObject;}
+		catch(NullReferenceException){
+			o = GameObject.Find ("Player-Itens(Clone)") as GameObject;
+
+		}
+
 		PlayerPropriedades p = o.GetComponent<PlayerPropriedades> ();
 		p.FornecerIncrementos ();
-		Debug.Log ("rodei");
+	
 		AsyncOperation async = Application.LoadLevelAsync("scene1");
 		yield return async;
-		Debug.Log("Loading complete");
+
 	}
 
 

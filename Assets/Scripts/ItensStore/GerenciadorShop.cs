@@ -18,11 +18,7 @@ public class GerenciadorShop : MonoBehaviour {
 
 
 	public void LoadGame(){
-		p.inventario.AmostrarIncremento ();
-		Debug.Log ("dando incrementos");
-	
-		p.FornecerIncrementos ();
-		Application.LoadLevel ("scene1");
+		Application.LoadLevel ("CenaLoading");
 	}
 
 	public void AttTextoGold(){
@@ -34,7 +30,7 @@ public class GerenciadorShop : MonoBehaviour {
 		try{
 		canvasAreYouSure = GameObject.Find ("CanvasAreYouSure");
 			canvasAreYouSure.SetActive (false);}
-		catch(NullReferenceException e){
+		catch(NullReferenceException){
 			Debug.Log("Canvas 'are you sure' nao existente ou desativado. Corriga isso programador fdp");
 		}
 
@@ -51,20 +47,23 @@ public class GerenciadorShop : MonoBehaviour {
 
 			p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
 		    
-		}catch(NullReferenceException e){
+		}catch(NullReferenceException){
 			Debug.Log ("'player-itens' nao encontrado. Erro no loading ou vc n passou pela scene main menu");
 			GameObject temp = Instantiate(Resources.Load ("Player-Itens")) as GameObject;
 			p = temp.GetComponent<PlayerPropriedades>();
+			Debug.Log ("erro tratado");
 		}
-		gold = p.inventario.gold;
+
 		save = p.save;
+		gold = save.gold;
+		AttTextoGold ();
 		List<BaseItem> arrayItens = new List<BaseItem> ();
 		foreach (GameObject atual in listinha) {
-			Debug.Log ("oi");
+			//Debug.Log ("oi");
 			BaseItem qualquer= atual.GetComponent<BaseItem>();
 			arrayItens.Add(qualquer);
 			if (qualquer.GetType()==typeof(ItemMaisBalas)){
-				Debug.Log ("entrei");
+				//Debug.Log ("entrei");
 				qualquer.Inicializar(save.BalasMais);
 			}
 
@@ -88,14 +87,22 @@ public class GerenciadorShop : MonoBehaviour {
 
 				//p.inventario.addIncremento(selecionado.incremento);}
 			}
-			catch(NullReferenceException e){
+			catch(NullReferenceException){
 				Debug.Log ("'player-itens' nao encontrado. Erro no loading ou vc n passou pela scene main menu");
 			}
 
 			AttTextoGold();
-	
+
+	        
 			//selecionado.AttEstadoItem(selecionado.estado_item+1);
-			selecionado.Inicializar(selecionado.estado_item);
+			selecionado.AttEstadoItem(selecionado.estado_item+1);
+			selecionado.Inicializar(selecionado.estado_item+1);
+		//	Debug.Log (selecionado.GetType());
+			if (selecionado.GetType()==typeof(ItemMaisBalas)){
+
+				p.save.BalasMais=selecionado.estado_item;
+			}
+
 		}
 		else{
 

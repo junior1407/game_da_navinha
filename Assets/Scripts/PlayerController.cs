@@ -1,4 +1,5 @@
 ﻿
+
 using UnityEngine;
 using System.Collections;
 using System;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 	bool vivo;
-	AudioSource audio;
+	AudioSource audioTiro;
 	public GameObject canvasGameOver;
 	public Text textGameOver;
 	public GameObject explodir;
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 	public Text nBalas;
 	public PlayerPropriedades p;
 	void Awake(){
-		audio= GetComponent<AudioSource>();
+		audioTiro= GetComponent<AudioSource>();
 		vivo = true;
 		GameObject vida4=GameObject.Find ("heart_4");
 		GameObject vida3=GameObject.Find ("heart_3");
@@ -50,11 +51,14 @@ public class PlayerController : MonoBehaviour {
 
 		try{
 			p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
-			p.inventario.AplicarTodasParadas ();}
-		catch(NullReferenceException e){
+			}
+		catch(NullReferenceException){
+			p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
 			Debug.Log ("player-itens n encontrado. FUCK");
 
 		}
+
+		p.inventario.AplicarTodasParadas ();
 		ConfereMostradorDeVida ();
 		AttNumeroBala ();
 
@@ -80,8 +84,8 @@ public class PlayerController : MonoBehaviour {
 			AttNumeroBala();
 			nextFire=Time.time+fireRate;
 			pollTiros.AtivarGameObject(new Vector3(spawnTiro.position.x,0.0f));
-			AudioSource audio = GetComponent<AudioSource>();
-			audio.Play ();
+
+			audioTiro.Play ();
 		}
 	
 	}
@@ -163,6 +167,8 @@ public class PlayerController : MonoBehaviour {
 		Time.timeScale = 0.0f;
 		textGameOver.text = "You got: " +Score +" COINS"; 
 		canvasGameOver.SetActive (true);
+		p.save.gold += Score;
+		Debug.Log ("Voce tem agora " + p.save.gold);
 		yield return 0;
 
 

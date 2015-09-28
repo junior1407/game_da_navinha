@@ -353,6 +353,7 @@ public class GameController : MonoBehaviour {
 
 	}
 	public void AbrirShop(){
+		Time.timeScale = 1.0f;
 		Application.LoadLevel ("CenaShop");
 
 	}

@@ -4,10 +4,18 @@ using System.Collections;
 public class ItemMaisBalas : BaseItem
 {
 
+
+
+
+
+
 	public override void AttEstadoItem (int level)
 	{
 
+
 		switch (level) {
+
+		
 
 		case 1:{
 			preco = 1;
