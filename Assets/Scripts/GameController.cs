@@ -82,7 +82,7 @@ public class GameController : MonoBehaviour {
 
 	IEnumerator StartJogo(){
 
-		int wave = 4;
+		int wave = 1;
 
 		yield return new WaitForSeconds (4);
 		float time=0;
