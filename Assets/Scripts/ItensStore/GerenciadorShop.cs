@@ -47,12 +47,19 @@ public class GerenciadorShop : MonoBehaviour {
 
 			p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
 		    
-		}catch(NullReferenceException){
+		}
+		catch(NullReferenceException){
 			Debug.Log ("'player-itens' nao encontrado. Erro no loading ou vc n passou pela scene main menu");
-			GameObject temp = Instantiate(Resources.Load ("Player-Itens")) as GameObject;
-			p = temp.GetComponent<PlayerPropriedades>();
+			try{
+				p = GameObject.Find ("Player-Itens(Clone)").GetComponent<PlayerPropriedades> ();}
+			catch(NullReferenceException){
+				GameObject temp = Instantiate(Resources.Load ("Player-Itens")) as GameObject;
+				p = temp.GetComponent<PlayerPropriedades>();
+			}
 			Debug.Log ("erro tratado");
 		}
+
+
 
 		save = p.save;
 		gold = save.gold;
@@ -65,6 +72,7 @@ public class GerenciadorShop : MonoBehaviour {
 			if (qualquer.GetType()==typeof(ItemMaisBalas)){
 				//Debug.Log ("entrei");
 				qualquer.Inicializar(save.BalasMais);
+				qualquer.AttEstadoItem(save.BalasMais+1);
 			}
 
 		}
@@ -79,6 +87,8 @@ public class GerenciadorShop : MonoBehaviour {
 		//Debug.Log (gold);
 		//Debug.Log (selecionado.name);
 		if (gold >= selecionado.preco) {
+			p.save.gold-=selecionado.preco;
+			Debug.Log (p.gold);		
 			gold -=selecionado.preco;
 
 		//	selecionado.btnComprar.interactable=false;
@@ -93,14 +103,18 @@ public class GerenciadorShop : MonoBehaviour {
 
 			AttTextoGold();
 
-	        
+			Debug.Log (selecionado.GetType());
 			//selecionado.AttEstadoItem(selecionado.estado_item+1);
 			selecionado.AttEstadoItem(selecionado.estado_item+1);
 			selecionado.Inicializar(selecionado.estado_item+1);
+			selecionado.AttEstadoItem(selecionado.estado_item+1);
 		//	Debug.Log (selecionado.GetType());
 			if (selecionado.GetType()==typeof(ItemMaisBalas)){
 
 				p.save.BalasMais=selecionado.estado_item;
+			}
+			if (selecionado.GetType()==typeof(ItemMaisDano)){
+				p.save.DanoMais=selecionado.estado_item;
 			}
 
 		}

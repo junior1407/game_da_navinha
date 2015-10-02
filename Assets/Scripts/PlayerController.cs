@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour {
 	public Text nBalas;
 	public PlayerPropriedades p;
 	void Awake(){
+		Debug.Log ("AWAKOU" + balas);
 		audioTiro= GetComponent<AudioSource>();
 		vivo = true;
 		GameObject vida4=GameObject.Find ("heart_4");
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour {
 		vida4.SetActive (true);
 		gerente = new Gerenciador_UI (vida4,vida3, vida2, vida1);
 		pollTiros = new GerenciadorPool ((GameObject) Resources.Load ("TiroKawaii"), 2);
+
 		vida = 3;
 		nextFire = 0.0f;
 		balas = 100;
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour {
 		nBalas.text = balas.ToString();
 	}
 	void Start(){
-	  
+		balas = 100;
 
 		try{
 			p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();

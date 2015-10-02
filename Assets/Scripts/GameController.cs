@@ -70,6 +70,7 @@ public class GameController : MonoBehaviour {
 	void Awake(){
 		Time.timeScale = 1.0f;
 		incrementoGold = 0.5f;
+
 		waveRodando = false;
 		pausado = false;
 		velocidade_jogo = 1.0f;
@@ -344,7 +345,7 @@ public class GameController : MonoBehaviour {
 		pollPartMeteoroC = new GerenciadorParticula (partMeteoroComum, 4);
 		pollPartMeteoroE = new GerenciadorParticula (partExplosao, 3);
 		StartCoroutine (StartJogo ());
-		 
+		 score = 0;
 		//pollMeteoros_comuns.FirstRunSpawn ();
 
 
