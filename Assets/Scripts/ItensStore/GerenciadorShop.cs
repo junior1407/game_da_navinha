@@ -74,6 +74,11 @@ public class GerenciadorShop : MonoBehaviour {
 				qualquer.Inicializar(save.BalasMais);
 				qualquer.AttEstadoItem(save.BalasMais+1);
 			}
+			if (qualquer.GetType()==typeof(ItemMaisDano)){
+				//Debug.Log ("entrei");
+				qualquer.Inicializar(save.DanoMais);
+				qualquer.AttEstadoItem(save.DanoMais+1);
+			}
 
 		}
 
