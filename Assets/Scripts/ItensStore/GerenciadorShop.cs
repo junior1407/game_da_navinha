@@ -79,6 +79,16 @@ public class GerenciadorShop : MonoBehaviour {
 				qualquer.Inicializar(save.DanoMais);
 				qualquer.AttEstadoItem(save.DanoMais+1);
 			}
+			if (qualquer.GetType()==typeof(ItemMaisVelocidade)){
+				//Debug.Log ("entrei");
+				qualquer.Inicializar(save.SpeedMais);
+				qualquer.AttEstadoItem(save.SpeedMais+1);
+			}
+			if (qualquer.GetType()==typeof(ItemVidaMais)){
+				//Debug.Log ("entrei");
+				qualquer.Inicializar(save.LifeMais);
+				qualquer.AttEstadoItem(save.LifeMais+1);
+			}
 
 		}
 
@@ -120,6 +130,12 @@ public class GerenciadorShop : MonoBehaviour {
 			}
 			if (selecionado.GetType()==typeof(ItemMaisDano)){
 				p.save.DanoMais=selecionado.estado_item;
+			}
+			if (selecionado.GetType()==typeof(ItemMaisVelocidade)){
+				p.save.SpeedMais=selecionado.estado_item;
+			}
+			if (selecionado.GetType()==typeof(ItemVidaMais)){
+				p.save.LifeMais=selecionado.estado_item;
 			}
 
 		}

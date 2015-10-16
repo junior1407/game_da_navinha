@@ -27,22 +27,25 @@ public class PlayerController : MonoBehaviour {
 	public Text nBalas;
 	public PlayerPropriedades p;
 	void Awake(){
-		Debug.Log ("AWAKOU" + balas);
+
 		audioTiro= GetComponent<AudioSource>();
 		vivo = true;
+		GameObject vida6=GameObject.Find ("heart_6");
+		GameObject vida5=GameObject.Find ("heart_5");
 		GameObject vida4=GameObject.Find ("heart_4");
 		GameObject vida3=GameObject.Find ("heart_3");
 		GameObject vida2=GameObject.Find ("heart_2");
 		GameObject vida1=GameObject.Find ("heart_1");
 		vida4.SetActive (true);
-		gerente = new Gerenciador_UI (vida4,vida3, vida2, vida1);
+	    
+		gerente = new Gerenciador_UI (vida6,vida5,vida4,vida3, vida2, vida1);
 		pollTiros = new GerenciadorPool ((GameObject) Resources.Load ("TiroKawaii"), 2);
 
 		vida = 3;
 		nextFire = 0.0f;
 		balas = 100;
 		dano = 1;
-		speed = 10.0f;
+		speed = 8.0f;
 	}
 
 	public void AttNumeroBala(){
@@ -95,7 +98,7 @@ public class PlayerController : MonoBehaviour {
 	void Update(){
 		//Debug.Log (1 / Time.deltaTime);
 	//	Debug.Log (Time.time);
-
+      
 
 		if ((Input.GetKeyDown (KeyCode.Space))){
 			Atirar ();

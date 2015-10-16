@@ -18,6 +18,11 @@ public class ShopSlid : MonoBehaviour {
 
 	public Transform malhaItens;
 
+
+
+	public bool downpressed;
+	public bool uppressed;
+
 	void Awake(){
 
 
@@ -29,16 +34,56 @@ public class ShopSlid : MonoBehaviour {
 
 	    posMarcadorCima = marcadorCima.transform.position;
 
+		if (downpressed) {
+			//PressKeyDown();
+			PressUpDown();
+		}
+		if (uppressed) {
+			PressKeyDown ();
+		}
 
-
-		if (Input.GetKey (KeyCode.DownArrow)&&(posMarcadorCima.y>posTopMarcador.y)) {
-			malhaItens.Translate(Vector3.down);
+		if (Input.GetKey (KeyCode.DownArrow)){
+			PressKeyDown();
 		}
 
 
-		if (Input.GetKey (KeyCode.UpArrow)&&(posMarcadorBaixo.y<posTopMarcador.y)){
-			malhaItens.Translate(Vector3.up);
+		if (Input.GetKey (KeyCode.UpArrow)){
+			PressUpDown();
 		}
 	
 	}
+
+	
+	public void holdKeyUp(){
+		Debug.Log ("apertando");
+		uppressed = true;
+	}
+	public void releaseKeyUp(){
+		Debug.Log ("soltando");
+		uppressed = false;
+	}
+
+
+	public void holdKeyDown(){
+		Debug.Log ("apertando");
+		downpressed = true;
+	}
+	public void releaseKeyDown(){
+		Debug.Log ("soltando");
+		downpressed = false;
+	}
+	public void PressKeyDown(){
+		if (posMarcadorCima.y > posTopMarcador.y) {
+			malhaItens.Translate(Vector3.down);
+		}
+	}
+	public void PressUpDown(){
+		if (posMarcadorBaixo.y < posTopMarcador.y) {
+			malhaItens.Translate (Vector3.up);
+
+		}
+
+	}
+
+
 }
