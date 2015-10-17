@@ -87,7 +87,7 @@ public class GameController : MonoBehaviour {
 
 		yield return new WaitForSeconds (4);
 		float time=0;
-		while (wave<50) {
+		while (wave<500) {
 			velocidade_jogo = 1 + 0.2f * (wave-1);
 			if (wave <5){
 				time=Random.Range(20,40);
@@ -138,44 +138,44 @@ public class GameController : MonoBehaviour {
 
 			case 8:
 			{
-				yield return StartCoroutine (WaveGenerator (time, 1.0f, 2, 3)); 
+				yield return StartCoroutine (WaveGenerator (time, 0.5f, 2, 3)); 
 				break;}
 
 			case 9:{
 
-				yield return StartCoroutine(WaveGenerator(time,1.0f,5,0,0));
+				yield return StartCoroutine(WaveGenerator(time,0.5f,5,0,0));
 				                            break;}
 			//Separantes e acelerantes
 
 			case 11:{
-				yield return StartCoroutine(WaveGenerator(time,1.0f,1,5));
+				yield return StartCoroutine(WaveGenerator(time,0.5f,1,5));
 				break;}	                           
 
 			case 12:{
-				yield return StartCoroutine(WaveGenerator(time,1.0f,3,5));
+				yield return StartCoroutine(WaveGenerator(time,0.5f,3,5));
 				break;}
 
 				//  13: Quebra Hard, Acelerante	 e Separante
 			case 14:{
-				yield return StartCoroutine(WaveGenerator(time,1.0f,2,3));
+				yield return StartCoroutine(WaveGenerator(time,0.5f,2,3));
 				break;}
 
 			case 15:{
-				yield return StartCoroutine(WaveGenerator(time,1.0f,5,4,0));
+				yield return StartCoroutine(WaveGenerator(time,0.5f,5,4,0));
 				break;}
 
 			case 16:{
-				yield return StartCoroutine(WaveGenerator(time,1.0f,6,4,0));
+				yield return StartCoroutine(WaveGenerator(time,0.5f,6,4,0));
 				break;}
 			case 17:{
-				yield return StartCoroutine(WaveGenerator(time,1.0f,1,6));
+				yield return StartCoroutine(WaveGenerator(time,0.5f,1,6));
 				break;}
 
 
 		
 
 			default :
-				yield return StartCoroutine (WaveGenerator (time, 1.0f, 4, 0, 0));
+				yield return StartCoroutine (WaveGenerator (time, 0.5f, 4, 0, 0));
 				break;
 
 			}
@@ -279,7 +279,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	IEnumerator WaveGenerator(float duracao,float intervalo, int TiposMeteoro1, int tipoMeteoro2){
-		
+
 		Vector3 posicaospawn;
 		float tempo_passado = 0.0f;
 		while (tempo_passado< duracao) {
