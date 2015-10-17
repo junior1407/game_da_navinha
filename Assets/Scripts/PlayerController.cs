@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour {
 
 		vida = 3;
 		nextFire = 0.0f;
-		balas = 100;
+		balas = 50;
 		dano = 1;
 		speed = 8.0f;
 	}
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 		nBalas.text = balas.ToString();
 	}
 	void Start(){
-		balas = 100;
+		balas = 50;
 
 		try{
 			p = GameObject.Find ("Player-Itens").GetComponent<PlayerPropriedades> ();
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour {
 		textGameOver.text = "You got: " +Score +" COINS"; 
 		canvasGameOver.SetActive (true);
 		p.save.gold += Score;
-		Debug.Log ("Voce tem agora " + p.save.gold);
+	
 		yield return 0;
 
 

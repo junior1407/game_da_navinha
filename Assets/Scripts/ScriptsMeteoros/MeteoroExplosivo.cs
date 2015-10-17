@@ -9,7 +9,7 @@ public class MeteoroExplosivo : MeteoroBase
 
 	public override void DestruirItSelf ()
 	{
-		Debug.Log ("reutilizando");
+		//Debug.Log ("reutilizando");
 		mesh.enabled = true;
 		vida_atual = vida_max;
 		atualizar_velocidadejogo ();

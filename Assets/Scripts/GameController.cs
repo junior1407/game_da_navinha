@@ -88,7 +88,7 @@ public class GameController : MonoBehaviour {
 		yield return new WaitForSeconds (4);
 		float time=0;
 		while (wave<50) {
-
+			velocidade_jogo = 1 + 0.2f * (wave-1);
 			if (wave <5){
 				time=Random.Range(20,40);
 			}
@@ -108,7 +108,7 @@ public class GameController : MonoBehaviour {
 			waveRodando=true;
 			switch (wave) {
 					
-			
+		
 			case 1:
 				{
 					yield return StartCoroutine (WaveGenerator (time, 1.0f, 1, 0, 0));
@@ -183,11 +183,11 @@ public class GameController : MonoBehaviour {
 				
 			yield return new WaitForSeconds (7);
 			wave++;
-			if (wave <= 5)
+		/*	if (wave <= 5)
 				velocidade_jogo += 0.2f;
 			if (wave > 5)
-				velocidade_jogo += 0.05f;
-			
+				velocidade_jogo += 0.2f;
+			*/
 
 
 			
@@ -240,13 +240,13 @@ public class GameController : MonoBehaviour {
 
 			if (atual==2){
 				pollMeteoros_explosivo.AtivarGameObject(posicaospawn);
-				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
+				yield return new WaitForSeconds(intervalo);tempo_passado+=intervalo;
 				
 			}
 
 			if (atual==3){
 				pollMeteoros_hard.AtivarGameObject(posicaospawn);
-				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
+				yield return new WaitForSeconds(intervalo);tempo_passado+=intervalo;
 
 			}
 
@@ -255,13 +255,13 @@ public class GameController : MonoBehaviour {
 				}
 				if (atual==5){
 					pollMeteoros_aceleradores.AtivarGameObject(posicaospawn);
-					yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
+					yield return new WaitForSeconds(intervalo);tempo_passado+=intervalo;
 				}
 
 
 			if (atual==6){
 				pollMeteoros_indestruct.AtivarGameObject(posicaospawn);
-				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
+				yield return new WaitForSeconds(intervalo);tempo_passado+=intervalo;
 
 				}
 			
@@ -297,13 +297,13 @@ public class GameController : MonoBehaviour {
 
 			if ((atual==2)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
 				pollMeteoros_explosivo.AtivarGameObject(posicaospawn);
-				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
+				yield return new WaitForSeconds(intervalo);tempo_passado+=intervalo;
 				
 			}
 
 			if ((atual==3)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
 				pollMeteoros_hard.AtivarGameObject(posicaospawn);
-				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
+				yield return new WaitForSeconds(intervalo);tempo_passado+=intervalo;
 				
 			}
 		
@@ -313,13 +313,13 @@ public class GameController : MonoBehaviour {
 
 
 				pollMeteoros_aceleradores.AtivarGameObject(posicaospawn);
-				yield return new WaitForSeconds(intervalo+0.2f+2.0f);tempo_passado+=intervalo+0.2f;
+				yield return new WaitForSeconds(intervalo);tempo_passado+=intervalo;
 			}
 
 			
 				if ((atual==6)&&(   (atual==TiposMeteoro1)||(atual==tipoMeteoro2)   )){
 				pollMeteoros_indestruct.AtivarGameObject(posicaospawn);
-				yield return new WaitForSeconds(intervalo+0.2f);tempo_passado+=intervalo+0.2f;
+				yield return new WaitForSeconds(intervalo);tempo_passado+=intervalo;
 				
 			}
 			

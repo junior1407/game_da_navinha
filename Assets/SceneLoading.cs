@@ -10,7 +10,7 @@ public class SceneLoading : MonoBehaviour {
 	}
 
 	IEnumerator Starto() {
-		Debug.Log ("oi");
+
 		PlayerPropriedades p;
 		GameObject o;
 		try{

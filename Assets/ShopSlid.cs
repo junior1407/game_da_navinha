@@ -55,21 +55,21 @@ public class ShopSlid : MonoBehaviour {
 
 	
 	public void holdKeyUp(){
-		Debug.Log ("apertando");
+		//Debug.Log ("apertando");
 		uppressed = true;
 	}
 	public void releaseKeyUp(){
-		Debug.Log ("soltando");
+		//Debug.Log ("soltando");
 		uppressed = false;
 	}
 
 
 	public void holdKeyDown(){
-		Debug.Log ("apertando");
+		//Debug.Log ("apertando");
 		downpressed = true;
 	}
 	public void releaseKeyDown(){
-		Debug.Log ("soltando");
+		//Debug.Log ("soltando");
 		downpressed = false;
 	}
 	public void PressKeyDown(){

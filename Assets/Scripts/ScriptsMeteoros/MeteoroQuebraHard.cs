@@ -9,7 +9,7 @@ public class MeteoroQuebraHard : MeteoroBase
 		vida_max = 3;
 	}
 	public override void DestruirItSelf(){
-		Debug.Log ("Mesh consertado");
+		//Debug.Log ("Mesh consertado");
 		mesh.enabled = true;
 		vida_atual = vida_max;
 		atualizar_velocidadejogo ();

@@ -45,7 +45,7 @@ public class MeteoroBase : MonoBehaviour {
 
 	public virtual void DestruirItSelf(){
 
-		Debug.Log ("rodei?");
+		//Debug.Log ("rodei?");
 		mesh.enabled = true;
 		vida_atual = vida_max;
 		atualizar_velocidadejogo ();
@@ -61,7 +61,7 @@ public class MeteoroBase : MonoBehaviour {
 		mesh.enabled = false;
 
 		yield return new WaitForSeconds(destroiAudio.clip.length);
-		Debug.Log ("audio tocado. mesh desabilitado");
+		//Debug.Log ("audio tocado. mesh desabilitado");
 		DestruirItSelf ();
 		yield return 1;
 	}
@@ -71,7 +71,7 @@ public class MeteoroBase : MonoBehaviour {
 		//Debug.Log ("gg");
 		vida_atual-=PlayerController.dano;
 		if (vida_atual <= 0) {
-			Debug.Log ("Destruido1");
+		//	Debug.Log ("Destruido1");
 			StartCoroutine(destruidoPorTiro());
 			GameController.addPontos(pontos);
 

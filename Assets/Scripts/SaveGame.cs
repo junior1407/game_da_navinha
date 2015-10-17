@@ -23,7 +23,7 @@ public class SaveGame
 		this.DanoMais = 0;
 		this.SpeedMais = 0;
 		this.LifeMais = 0;
-		this.gold = 5000;
+		this.gold = 1;
 	}
 
 	

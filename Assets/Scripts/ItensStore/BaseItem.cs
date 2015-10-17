@@ -21,8 +21,16 @@ public abstract class BaseItem : MonoBehaviour
 
 
 	public void Comprar(){
-		GerenciadorShop.canvasAreYouSure.SetActive (true);
-		GerenciadorShop.selecionado = this;
+
+		if (GerenciadorShop.gold < preco) {
+			GerenciadorShop.canvasPOBRE.SetActive (true);
+		} else {
+
+			GerenciadorShop.canvasAreYouSure.SetActive (true);
+			GerenciadorShop.selecionado = this;
+		}
+
+
 	}
 	public abstract void AttEstadoItem (int level);
 

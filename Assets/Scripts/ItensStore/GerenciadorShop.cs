@@ -10,9 +10,10 @@ public class GerenciadorShop : MonoBehaviour {
 	public List<GameObject> listinha;
 
 	public static GameObject canvasAreYouSure;
+	public static GameObject canvasPOBRE;
 	public static BaseItem selecionado;
 	public Text Textogold;
-	public int gold;
+	public static int gold;
 	public PlayerPropriedades p;
 	SaveGame save;
 
@@ -26,14 +27,27 @@ public class GerenciadorShop : MonoBehaviour {
 		Textogold.text = gold.ToString();
 	}
 
+
+
 	void Awake(){
 		try{
+		
 		canvasAreYouSure = GameObject.Find ("CanvasAreYouSure");
-			canvasAreYouSure.SetActive (false);}
+			canvasAreYouSure.SetActive (false);
+
+		}
 		catch(NullReferenceException){
 			Debug.Log("Canvas 'are you sure' nao existente ou desativado. Corriga isso programador fdp");
 		}
 
+		try{
+
+			canvasPOBRE = GameObject.Find ("CanvasPobre");
+			canvasPOBRE.SetActive(false);}
+		catch(NullReferenceException){
+			Debug.Log("sem dinehrio vacilao nao encontrada");
+		}
+			
 		listinha.AddRange(GameObject.FindGameObjectsWithTag ("item"));
 		AttTextoGold ();
 
@@ -56,7 +70,7 @@ public class GerenciadorShop : MonoBehaviour {
 				GameObject temp = Instantiate(Resources.Load ("Player-Itens")) as GameObject;
 				p = temp.GetComponent<PlayerPropriedades>();
 			}
-			Debug.Log ("erro tratado");
+
 		}
 
 
@@ -103,11 +117,11 @@ public class GerenciadorShop : MonoBehaviour {
 		//Debug.Log (selecionado.name);
 		if (gold >= selecionado.preco) {
 			p.save.gold-=selecionado.preco;
-			Debug.Log (p.gold);		
+				
 			gold -=selecionado.preco;
 
 		//	selecionado.btnComprar.interactable=false;
-			FecharAreYouSure();
+			StartCoroutine(FecharComDelay());
 			try{
 
 				//p.inventario.addIncremento(selecionado.incremento);}
@@ -118,7 +132,7 @@ public class GerenciadorShop : MonoBehaviour {
 
 			AttTextoGold();
 
-			Debug.Log (selecionado.GetType());
+
 			//selecionado.AttEstadoItem(selecionado.estado_item+1);
 			selecionado.AttEstadoItem(selecionado.estado_item+1);
 			selecionado.Inicializar(selecionado.estado_item+1);
@@ -148,10 +162,22 @@ public class GerenciadorShop : MonoBehaviour {
 	}
 
 	public void FecharAreYouSure(){
+
 		canvasAreYouSure.SetActive (false);
 	}
 
-
+   IEnumerator FecharComDelay(){
+		yield return new WaitForSeconds (0.3f);
+		canvasAreYouSure.SetActive (false);
+	}
+	public void FecharPobre(){
+		StartCoroutine (FecharPobreComDelay ());
+	}
+	IEnumerator FecharPobreComDelay(){
+		yield return new WaitForSeconds (0.3f);
+		canvasPOBRE.SetActive (false);
+	}
+	
 	void Update(){
 
 	}

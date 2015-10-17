@@ -33,7 +33,7 @@ public class BalasMais: BaseIncremento
 	
 	public override void aplicar ()
 	{
-		PlayerController.balas =100+ incremento;
+		PlayerController.balas =50+ incremento;
 	//	Debug.Log ("KRL EU FUI APLICADO");
 
 

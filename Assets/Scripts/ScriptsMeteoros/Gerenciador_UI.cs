@@ -24,7 +24,7 @@ public class Gerenciador_UI {
 		vida5.SetActive (false);
 		vida6.SetActive (false);
 
-		Debug.Log ("recebi " + life);
+
 
 		if (life > 3) {
 			vida4.SetActive (true);
@@ -43,7 +43,7 @@ public class Gerenciador_UI {
 	}
 				
 	public void att(int life){
-		Debug.Log ("sera que rodei?");
+		//Debug.Log ("sera que rodei?");
 		if (life == 5) {
 			vida6.SetActive(false);
 		}
