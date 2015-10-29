@@ -13,8 +13,24 @@ public class PlayerPropriedades : MonoBehaviour
 		inventario = new ItensPlayer ();
 	
 		save = new SaveGame ();
+		save.gold = 0;
 
 
+	}
+
+	public void Load(){
+		UnityPluginForWindowsPhone.SaveGame savetemp = UnityPluginForWindowsPhone.Class1.Load ();
+		save = converterSave (savetemp);
+
+	}
+
+	public void Salvar(){
+		UnityPluginForWindowsPhone.Class1.Save (new UnityPluginForWindowsPhone.SaveGame (save.gold, save.BalasMais, save.DanoMais, save.SpeedMais, save.LifeMais));
+
+	}
+
+	public SaveGame converterSave(UnityPluginForWindowsPhone.SaveGame save2){
+		return new SaveGame (save2.BalasMais, save2.DanoMais, save2.SpeedMais, save2.LifeMais, save2.gold);
 	}
 	
 	public void FornecerIncrementos(){

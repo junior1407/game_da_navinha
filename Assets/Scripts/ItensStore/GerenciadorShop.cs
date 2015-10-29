@@ -19,8 +19,18 @@ public class GerenciadorShop : MonoBehaviour {
 
 
 	public void LoadGame(){
+		p.Salvar ();
+
 		Application.LoadLevel ("CenaLoading");
 	}
+
+	public void Quit(){
+		p.Salvar ();
+		Application.Quit ();
+
+	}
+    
+
 
 	public void AttTextoGold(){
 
@@ -72,6 +82,7 @@ public class GerenciadorShop : MonoBehaviour {
 			}
 
 		}
+		p.Load ();
 
 
 

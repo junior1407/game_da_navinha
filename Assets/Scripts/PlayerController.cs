@@ -173,6 +173,7 @@ public class PlayerController : MonoBehaviour {
 		textGameOver.text = "You got: " +Score +" COINS"; 
 		canvasGameOver.SetActive (true);
 		p.save.gold += Score;
+		p.Salvar ();
 	
 		yield return 0;
 

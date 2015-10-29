@@ -4,8 +4,14 @@ using System.Collections;
 public class ControladorCanvasMenu : MonoBehaviour {
 
 	public GameObject canvasCreditos;
+	public PlayerPropriedades PlayerPropriedades;
 	void Start () {
 	
+	}
+	void Awake(){
+
+		PlayerPropriedades.Load ();
+
 	}
 	
 
@@ -14,6 +20,7 @@ public class ControladorCanvasMenu : MonoBehaviour {
 
 	}
 	public void OpenShop(){
+
 		Application.LoadLevel ("CenaShop");
 	}
 
@@ -22,6 +29,9 @@ public class ControladorCanvasMenu : MonoBehaviour {
 	}
 
 	public void OpenCloseCredits(){
+
+
+
 		if (canvasCreditos.activeSelf) {
 			canvasCreditos.SetActive(false);
 		} else {
