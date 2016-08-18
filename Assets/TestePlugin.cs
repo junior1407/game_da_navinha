@@ -11,7 +11,7 @@ public class TestePlugin : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Start () {
-		text.text = UnityPluginForWindowsPhone.Class1.GetDeviceName;
+	//	text.text = UnityPluginForWindowsPhone.Class1.GetDeviceName;
 	
 	}
 
