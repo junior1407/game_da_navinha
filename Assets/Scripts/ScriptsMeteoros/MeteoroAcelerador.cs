@@ -28,6 +28,13 @@ using System.Collections;
 
 
 
+	public override void EDestruido(){
+
+		if (transform.position.z < -100f) {
+			DestruirItSelf();
+		}
+	}
+
 	public override void DestruirItSelf ()
 	{
 		RapidoAudio.enabled = false;

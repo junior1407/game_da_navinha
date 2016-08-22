@@ -98,9 +98,9 @@ public class MeteoroBase : MonoBehaviour {
 	void Mover(){
 		transform.Translate (new Vector3 (0, 0, -1) * (velocidade_base + velocidade_jogo) * Time.deltaTime);
 	}
-	void EDestruido(){
+	public virtual void EDestruido(){
 
-		if (transform.position.z < -1) {
+		if (transform.position.z < -1f) {
 			DestruirItSelf();
 		}
 	}

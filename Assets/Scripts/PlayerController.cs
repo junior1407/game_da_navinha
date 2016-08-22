@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour {
 		gerente = new Gerenciador_UI (vida6,vida5,vida4,vida3, vida2, vida1);
 		pollTiros = new GerenciadorPool ((GameObject) Resources.Load ("TiroKawaii"), 2);
 
-		vida = 3;
+		vida = 10;
 		nextFire = 0.0f;
 		balas = 50;
 		dano = 1;
