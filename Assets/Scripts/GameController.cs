@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour {
 	bool pausado;
 	bool waveRodando;
 	float incrementoGold;
-
+	public int levelcomecar=1;
 	public ControladorSkyboxes controlsky;
 	static Text wave;
 	public Text textoScore;
@@ -84,16 +84,19 @@ public class GameController : MonoBehaviour {
 	IEnumerator StartJogo(){
 
 		int wave = 1;
+		wave = levelcomecar;
 
 		yield return new WaitForSeconds (4);
 		float time=0;
 		while (wave<500) {
 			velocidade_jogo = 1 + 0.2f * (wave-1);
-			if (wave <5){
+			/*if (wave <5){
 				time=Random.Range(20,40);
 			}
 			if (wave>=5){
-				time=Random.Range (35,50);}
+				time=Random.Range (35,50);
+			}*/
+
 
 			if (wave%7==0){
 				controlsky.MudarSkybox();
@@ -102,6 +105,7 @@ public class GameController : MonoBehaviour {
 
 			caixaWave.Startar ();
 			yield return new WaitForSeconds(1);
+			time = 10;
 			//	StartCoroutine (caixaWave.des());
 			//controlsky.MudarSkybox();
 
